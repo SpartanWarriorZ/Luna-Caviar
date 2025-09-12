@@ -16,23 +16,148 @@
             <div class="logo">
                 <img src="Luna-Caviar-Logo-Schwarz.png" alt="Luna Caviar Logo" class="logo-img">
             </div>
-            <div class="nav-menu">
+            
+            <!-- Desktop Navigation -->
+            <div class="nav-menu desktop-nav">
                 <a href="#home" class="nav-link">Home</a>
                 <a href="#services" class="nav-link">Services</a>
                 <a href="#about" class="nav-link">Über Uns</a>
                 <a href="#contact" class="nav-link">Kontakt</a>
+                <button class="theme-toggle" onclick="toggleTheme()" title="Theme wechseln">
+                    <i class="fas fa-moon" id="theme-icon"></i>
+                </button>
                 <button class="booking-btn-nav" onclick="openBookingModal()">
                     <i class="fas fa-calendar-alt"></i>
                     <span>Jetzt Buchen</span>
                 </button>
             </div>
-            <div class="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
+            
+            <!-- Mobile Hamburger Button -->
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Menü öffnen">
+                <div class="hamburger-line"></div>
+                <div class="hamburger-line"></div>
+                <div class="hamburger-line"></div>
+            </button>
         </div>
     </nav>
+
+    <!-- Mobile Sidebar Menu -->
+    <div class="mobile-sidebar-overlay" id="mobileSidebarOverlay"></div>
+    <div class="mobile-sidebar" id="mobileSidebar">
+        <!-- Sidebar Header - Only Close Button -->
+        <div class="sidebar-header">
+            <button class="sidebar-close" onclick="closeMobileMenu()" aria-label="Menü schließen">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar-nav">
+            <div class="nav-section">
+                <h4 class="nav-section-title">Navigation</h4>
+                <a href="#home" class="sidebar-link" onclick="closeMobileMenu()">
+                    <div class="sidebar-link-icon">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-text">Home</span>
+                        <span class="sidebar-link-desc">Zurück zur Startseite</span>
+                    </div>
+                    <div class="sidebar-link-arrow">
+                        <i class="fas fa-chevron-right"></i>
+                    </div>
+                </a>
+                
+                <a href="#services" class="sidebar-link" onclick="closeMobileMenu()">
+                    <div class="sidebar-link-icon">
+                        <i class="fas fa-gem"></i>
+                    </div>
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-text">Services</span>
+                        <span class="sidebar-link-desc">Unsere Luxus-Pakete</span>
+                    </div>
+                    <div class="sidebar-link-arrow">
+                        <i class="fas fa-chevron-right"></i>
+                    </div>
+                </a>
+                
+                <a href="#about" class="sidebar-link" onclick="closeMobileMenu()">
+                    <div class="sidebar-link-icon">
+                        <i class="fas fa-info-circle"></i>
+                    </div>
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-text">Über Uns</span>
+                        <span class="sidebar-link-desc">Lernen Sie uns kennen</span>
+                    </div>
+                    <div class="sidebar-link-arrow">
+                        <i class="fas fa-chevron-right"></i>
+                    </div>
+                </a>
+                
+                <a href="#contact" class="sidebar-link" onclick="closeMobileMenu()">
+                    <div class="sidebar-link-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="sidebar-link-content">
+                        <span class="sidebar-link-text">Kontakt</span>
+                        <span class="sidebar-link-desc">Kontaktieren Sie uns</span>
+                    </div>
+                    <div class="sidebar-link-arrow">
+                        <i class="fas fa-chevron-right"></i>
+                    </div>
+                </a>
+            </div>
+        </nav>
+        
+        <!-- Sidebar Actions -->
+        <div class="sidebar-actions">
+            <div class="action-section">
+                <h4 class="nav-section-title">Aktionen</h4>
+                
+                <button class="sidebar-action-btn theme-action" onclick="toggleTheme(); closeMobileMenu();">
+                    <div class="sidebar-action-icon">
+                        <i class="fas fa-moon" id="sidebar-theme-icon"></i>
+                    </div>
+                    <div class="sidebar-action-content">
+                        <span class="sidebar-action-text">Theme wechseln</span>
+                        <span class="sidebar-action-desc">Hell/Dunkel Modus</span>
+                    </div>
+                    <div class="sidebar-action-indicator">
+                        <div class="theme-indicator"></div>
+                    </div>
+                </button>
+                
+                <button class="sidebar-action-btn booking-action" onclick="openBookingModal(); closeMobileMenu();">
+                    <div class="sidebar-action-icon">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <div class="sidebar-action-content">
+                        <span class="sidebar-action-text">Event Buchen</span>
+                        <span class="sidebar-action-desc">Jetzt Termin vereinbaren</span>
+                    </div>
+                    <div class="sidebar-action-arrow">
+                        <i class="fas fa-arrow-right"></i>
+                    </div>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Sidebar Footer -->
+        <div class="sidebar-footer">
+            <div class="sidebar-social">
+                <a href="#" class="social-link" aria-label="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="#" class="social-link" aria-label="Facebook">
+                    <i class="fab fa-facebook"></i>
+                </a>
+                <a href="#" class="social-link" aria-label="LinkedIn">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+            </div>
+            <p class="sidebar-copyright">© 2024 Luna Caviar</p>
+        </div>
+    </div>
 
     <!-- Hero Section -->
     <section id="home" class="hero">

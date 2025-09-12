@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeFormValidation();
     initializeNavigation();
     initializeAnimations();
+    initializeTheme();
 });
 
 // Lenis Scroll Initialization
@@ -124,23 +125,167 @@ function scrollToSection(sectionId) {
     }
 }
 
-// Navigation Functions
-function initializeNavigation() {
-    // Mobile menu toggle
-    hamburger?.addEventListener('click', function() {
-        hamburger.classList.toggle('active');
-        navMenu.classList.toggle('active');
-    });
+// Mobile Navigation Functions
+function initializeMobileNavigation() {
+    // Initialize mobile menu
+    initMobileNavigation();
     
-    // Close mobile menu when clicking on links
-    document.querySelectorAll('.nav-link').forEach(link => {
-        link.addEventListener('click', function() {
-            hamburger?.classList.remove('active');
-            navMenu?.classList.remove('active');
+    // Smooth scroll for desktop navigation
+    document.querySelectorAll('.desktop-nav .nav-link').forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const href = this.getAttribute('href');
+            if (href.startsWith('#')) {
+                const sectionId = href.substring(1);
+                scrollToSection(sectionId);
+            }
         });
     });
     
-    // Navbar scroll effect is now handled by Lenis scroll event
+    // Smooth scroll for mobile navigation
+    document.querySelectorAll('.mobile-nav-link').forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const href = this.getAttribute('href');
+            if (href.startsWith('#')) {
+                const sectionId = href.substring(1);
+                scrollToSection(sectionId);
+            }
+        });
+    });
+}
+
+// Initialize mobile sidebar system
+function initMobileNavigation() {
+    const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+    const mobileSidebarOverlay = document.getElementById('mobileSidebarOverlay');
+    const mobileSidebar = document.getElementById('mobileSidebar');
+    
+    if (!mobileMenuBtn || !mobileSidebarOverlay || !mobileSidebar) return;
+    
+    // ESC key to close sidebar
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && mobileSidebar.classList.contains('show')) {
+            closeMobileMenu();
+        }
+    });
+    
+    // Click outside to close sidebar
+    mobileSidebarOverlay.addEventListener('click', function(e) {
+        if (e.target === mobileSidebarOverlay) {
+            closeMobileMenu();
+        }
+    });
+    
+    // Prevent body scroll when sidebar is open
+    const originalBodyOverflow = document.body.style.overflow;
+}
+
+// Toggle mobile sidebar
+function toggleMobileMenu() {
+    const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+    const mobileSidebarOverlay = document.getElementById('mobileSidebarOverlay');
+    const mobileSidebar = document.getElementById('mobileSidebar');
+    
+    if (!mobileMenuBtn || !mobileSidebarOverlay || !mobileSidebar) return;
+    
+    if (mobileSidebar.classList.contains('show')) {
+        closeMobileMenu();
+    } else {
+        openMobileMenu();
+    }
+}
+
+// Open mobile sidebar
+function openMobileMenu() {
+    const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+    const mobileSidebarOverlay = document.getElementById('mobileSidebarOverlay');
+    const mobileSidebar = document.getElementById('mobileSidebar');
+    
+    if (!mobileMenuBtn || !mobileSidebarOverlay || !mobileSidebar) return;
+    
+    // Add active classes
+    mobileMenuBtn.classList.add('active');
+    mobileSidebarOverlay.classList.add('show');
+    mobileSidebar.classList.add('show');
+    
+    // Prevent body scroll
+    document.body.style.overflow = 'hidden';
+    
+    // Stop Lenis scrolling
+    if (lenis) {
+        lenis.stop();
+    }
+    
+    // Update sidebar theme icon
+    updateSidebarThemeIcon();
+    
+    // Add entrance animation to sidebar items
+    animateSidebarItems();
+}
+
+// Close mobile sidebar
+function closeMobileMenu() {
+    const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+    const mobileSidebarOverlay = document.getElementById('mobileSidebarOverlay');
+    const mobileSidebar = document.getElementById('mobileSidebar');
+    
+    if (!mobileMenuBtn || !mobileSidebarOverlay || !mobileSidebar) return;
+    
+    // Remove active classes
+    mobileMenuBtn.classList.remove('active');
+    mobileSidebarOverlay.classList.remove('show');
+    mobileSidebar.classList.remove('show');
+    
+    // Restore body scroll
+    document.body.style.overflow = '';
+    
+    // Restart Lenis scrolling
+    if (lenis) {
+        lenis.start();
+    }
+}
+
+// Update sidebar theme icon
+function updateSidebarThemeIcon() {
+    const sidebarThemeIcon = document.getElementById('sidebar-theme-icon');
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    
+    if (sidebarThemeIcon) {
+        if (currentTheme === 'dark') {
+            sidebarThemeIcon.className = 'fas fa-sun';
+        } else {
+            sidebarThemeIcon.className = 'fas fa-moon';
+        }
+    }
+}
+
+// Animate sidebar items on open
+function animateSidebarItems() {
+    const sidebarLinks = document.querySelectorAll('.sidebar-link');
+    const sidebarActions = document.querySelectorAll('.sidebar-action-btn');
+    
+    // Reset animations
+    [...sidebarLinks, ...sidebarActions].forEach((item, index) => {
+        item.style.opacity = '0';
+        item.style.transform = 'translateX(20px)';
+        item.style.transition = 'all 0.3s ease';
+    });
+    
+    // Animate items in sequence
+    [...sidebarLinks, ...sidebarActions].forEach((item, index) => {
+        setTimeout(() => {
+            item.style.opacity = '1';
+            item.style.transform = 'translateX(0)';
+        }, 100 + (index * 50));
+    });
+}
+
+// Legacy function for backward compatibility
+function initializeNavigation() {
+    initializeMobileNavigation();
 }
 
 // Calendar Functions
@@ -553,6 +698,47 @@ if ('serviceWorker' in navigator) {
     });
 }
 
+// Theme Toggle Functions
+function initializeTheme() {
+    // Check for saved theme preference or default to light mode
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    setTheme(savedTheme);
+}
+
+function toggleTheme() {
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    setTheme(newTheme);
+    
+    // Update sidebar theme icon
+    updateSidebarThemeIcon();
+}
+
+function setTheme(theme) {
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('theme', theme);
+    
+    // Update theme icon
+    const themeIcon = document.getElementById('theme-icon');
+    if (themeIcon) {
+        if (theme === 'dark') {
+            themeIcon.className = 'fas fa-sun';
+        } else {
+            themeIcon.className = 'fas fa-moon';
+        }
+    }
+    
+    // Update logo based on theme
+    const logo = document.querySelector('.logo-img');
+    if (logo) {
+        if (theme === 'dark') {
+            logo.src = 'Luna-Caviar-Logo-Weiss.png';
+        } else {
+            logo.src = 'Luna-Caviar-Logo-Schwarz.png';
+        }
+    }
+}
+
 // Export functions for testing (if needed)
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = {
@@ -561,6 +747,8 @@ if (typeof module !== 'undefined' && module.exports) {
         isValidPhone,
         calculatePackagePrice,
         formatCurrency,
-        formatDate
+        formatDate,
+        toggleTheme,
+        setTheme
     };
 }
