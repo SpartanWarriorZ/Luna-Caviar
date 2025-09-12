@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeNavigation();
     initializeAnimations();
     initializeTheme();
+    initializeLanguage();
     initializeMobileNavbar();
     initializeMobileKaviarAnimation();
     initializeCounterAnimation();
@@ -351,8 +352,9 @@ function openMobileMenu() {
         lenis.stop();
     }
     
-    // Update sidebar theme icon
+    // Update sidebar theme icon and language flag
     updateSidebarThemeIcon();
+    updateSidebarLanguageFlag();
     
     // Add entrance animation to sidebar items
     animateSidebarItems();
@@ -963,6 +965,108 @@ if ('serviceWorker' in navigator) {
                 console.log('ServiceWorker registration failed');
             });
     });
+}
+
+// Language Toggle Functions
+function initializeLanguage() {
+    // Check for saved language preference or default to German
+    const savedLanguage = localStorage.getItem('language') || 'de';
+    setLanguage(savedLanguage);
+}
+
+function toggleLanguage() {
+    const currentLanguage = document.documentElement.getAttribute('data-language');
+    const newLanguage = currentLanguage === 'en' ? 'de' : 'en';
+    setLanguage(newLanguage);
+    
+    // Update sidebar language flag
+    updateSidebarLanguageFlag();
+}
+
+function setLanguage(language) {
+    document.documentElement.setAttribute('data-language', language);
+    localStorage.setItem('language', language);
+    
+    // Update all elements with data attributes
+    const elements = document.querySelectorAll('[data-de][data-en]');
+    elements.forEach(element => {
+        const text = element.getAttribute(`data-${language}`);
+        if (text) {
+            element.innerHTML = text;
+        }
+    });
+    
+    // Update select options
+    const selectOptions = document.querySelectorAll('option[data-de][data-en]');
+    selectOptions.forEach(option => {
+        const text = option.getAttribute(`data-${language}`);
+        if (text) {
+            option.textContent = text;
+        }
+    });
+    
+    // Update textarea placeholders
+    const textareas = document.querySelectorAll('textarea[data-de][data-en]');
+    textareas.forEach(textarea => {
+        const placeholder = textarea.getAttribute(`data-${language}`);
+        if (placeholder) {
+            textarea.placeholder = placeholder;
+        }
+    });
+    
+    // Update flag icons
+    const flags = document.querySelectorAll('#language-flag, #sidebar-language-flag');
+    flags.forEach(flag => {
+        if (language === 'en') {
+            flag.className = 'fi fi-gb flag-icon';
+        } else {
+            flag.className = 'fi fi-de flag-icon';
+        }
+    });
+    
+    // Update page title
+    document.title = language === 'en' ? 'Luna Caviar - Exclusive Mobile Caviar Service' : 'Luna Caviar - Exklusiver Mobiler Caviar-Service';
+}
+
+function updateSidebarLanguageFlag() {
+    const sidebarLanguageFlag = document.getElementById('sidebar-language-flag');
+    const currentLanguage = document.documentElement.getAttribute('data-language');
+    
+    if (sidebarLanguageFlag) {
+        if (currentLanguage === 'en') {
+            sidebarLanguageFlag.className = 'fi fi-gb flag-icon';
+        } else {
+            sidebarLanguageFlag.className = 'fi fi-de flag-icon';
+        }
+    }
+}
+
+// Scroll to Top Function
+function scrollToTop(event) {
+    event.preventDefault();
+    
+    // Smooth scroll to top with easing
+    const startPosition = window.pageYOffset;
+    const startTime = performance.now();
+    const duration = 1200; // 1.2 seconds for smooth animation
+    
+    function easeInOutCubic(t) {
+        return t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
+    }
+    
+    function animateScroll(currentTime) {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const ease = easeInOutCubic(progress);
+        
+        window.scrollTo(0, startPosition * (1 - ease));
+        
+        if (progress < 1) {
+            requestAnimationFrame(animateScroll);
+        }
+    }
+    
+    requestAnimationFrame(animateScroll);
 }
 
 // Theme Toggle Functions

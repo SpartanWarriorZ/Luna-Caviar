@@ -49,7 +49,7 @@
     /* Alternating backgrounds for sections */
     --bg-section-1: #1a1a1a;  /* Edler dunkel - Services */
     --bg-section-2: #1a1a1a;  /* Edler dunkel - About */
-    --bg-section-3: #2d2d2d;  /* Heller schwarz - Contact */
+    --bg-section-3: #1a1a1a;  /* Edler dunkel - Contact */
 }
 
 /* Dark Mode Modal Enhancements */
@@ -162,6 +162,7 @@ h1, h2, h3, h4, h5, h6 {
         var(--primary-gold) 80%, 
         transparent 100%);
     opacity: 0.8;
+    z-index: 1;
 }
 
 [data-theme="dark"] .navbar {
@@ -194,7 +195,7 @@ h1, h2, h3, h4, h5, h6 {
     width: auto;
     transition: all 0.3s ease;
     position: relative;
-    z-index: 10;
+    z-index: 25;
     margin-top: -40px;
     margin-bottom: -40px;
     border-radius: 50%;
@@ -204,6 +205,22 @@ h1, h2, h3, h4, h5, h6 {
     backdrop-filter: blur(20px);
 }
 
+.logo-link {
+    display: inline-block;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border-radius: 50%;
+    position: relative;
+    z-index: 20;
+}
+
+.logo-link:hover {
+    transform: scale(1.05);
+    background: rgba(212, 175, 55, 0.1);
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+}
+
 .logo-img:hover {
     transform: scale(1.05);
 }
@@ -211,7 +228,7 @@ h1, h2, h3, h4, h5, h6 {
 .nav-menu {
     display: flex;
     align-items: center;
-    gap: 2rem;
+    gap: 1.2rem;
 }
 
 .nav-link {
@@ -241,6 +258,46 @@ h1, h2, h3, h4, h5, h6 {
     width: 100%;
 }
 
+/* Toggle Buttons Group */
+.toggle-buttons {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-right: 1rem;
+}
+
+/* Language Toggle Button */
+.language-toggle {
+    background: transparent;
+    border: 2px solid var(--primary-gold);
+    color: var(--primary-gold);
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+}
+
+.language-toggle:hover {
+    background: var(--primary-gold);
+    color: white;
+    transform: scale(1.1);
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+}
+
+.flag-icon {
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+    display: inline-block;
+    line-height: 1;
+    border-radius: 2px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
 /* Theme Toggle Button */
 .theme-toggle {
     background: transparent;
@@ -255,7 +312,6 @@ h1, h2, h3, h4, h5, h6 {
     align-items: center;
     justify-content: center;
     font-size: 1.2rem;
-    margin-right: 1rem;
 }
 
 .theme-toggle:hover {
@@ -269,7 +325,7 @@ h1, h2, h3, h4, h5, h6 {
     background: linear-gradient(135deg, var(--primary-gold), var(--accent-gold));
     color: white;
     border: none;
-    padding: 0.8rem 1.5rem;
+    padding: 0.7rem 1.3rem;
     border-radius: 50px;
     font-weight: 600;
     cursor: pointer;
@@ -432,12 +488,14 @@ h1, h2, h3, h4, h5, h6 {
     display: flex;
     gap: 1rem;
     flex-wrap: wrap;
-    padding: 2rem;
+    padding: 1.2rem 1.5rem;
     background: rgba(255, 255, 255, 0.25);
     border-radius: 20px;
     backdrop-filter: blur(15px);
     border: 1px solid rgba(255, 255, 255, 0.3);
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    width: fit-content;
+    margin: 0 auto;
 }
 
 .btn-primary {
@@ -1419,9 +1477,11 @@ h1, h2, h3, h4, h5, h6 {
     }
     
     .hero-buttons {
-        padding: 1.5rem;
+        padding: 1rem 1.2rem;
         background: rgba(255, 255, 255, 0.3);
         backdrop-filter: blur(20px);
+        width: fit-content;
+        margin: 0 auto;
     }
     
     .hero-title {
@@ -1471,6 +1531,8 @@ h1, h2, h3, h4, h5, h6 {
     .hero-buttons {
         flex-direction: column;
         align-items: center;
+        width: fit-content;
+        margin: 0 auto;
     }
     
     .btn-primary,
@@ -1673,17 +1735,19 @@ html.lenis {
 }
 
 .hamburger-line {
-    width: 16px;
+    width: 18px;
     height: 2px;
     background: var(--text-primary);
-    border-radius: 2px;
+    border-radius: 1px;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 /* Hamburger Animation zu X */
 .mobile-menu-btn.active .hamburger-line:nth-child(1) {
-    transform: rotate(45deg) translate(4px, 4px);
+    transform: rotate(45deg) translate(5px, 5px);
     background: var(--primary-gold);
+    box-shadow: 0 1px 3px rgba(212, 175, 55, 0.3);
 }
 
 .mobile-menu-btn.active .hamburger-line:nth-child(2) {
@@ -1692,8 +1756,9 @@ html.lenis {
 }
 
 .mobile-menu-btn.active .hamburger-line:nth-child(3) {
-    transform: rotate(-45deg) translate(4px, -4px);
+    transform: rotate(-45deg) translate(5px, -5px);
     background: var(--primary-gold);
+    box-shadow: 0 1px 3px rgba(212, 175, 55, 0.3);
 }
 
 /* Mobile Sidebar Overlay */
@@ -2108,21 +2173,27 @@ html.lenis {
 /* Desktop Hamburger Button Styling */
 @media (min-width: 769px) {
     .mobile-menu-btn {
-        width: 32px;
-        height: 32px;
-        background: rgba(0, 0, 0, 0.06);
-        border-radius: 6px;
-        gap: 2px;
+        width: 40px;
+        height: 40px;
+        background: rgba(0, 0, 0, 0.08);
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        gap: 3px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     }
     
     .mobile-menu-btn:hover {
-        background: rgba(0, 0, 0, 0.12);
+        background: rgba(0, 0, 0, 0.15);
+        border-color: var(--primary-gold);
         transform: translateY(-50%) scale(1.05);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     }
     
     .hamburger-line {
-        width: 14px;
-        height: 1.5px;
+        width: 16px;
+        height: 2px;
+        background: var(--text-primary);
+        border-radius: 1px;
     }
     
     /* Desktop Navigation bleibt zentriert */
