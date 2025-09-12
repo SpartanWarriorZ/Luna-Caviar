@@ -19,6 +19,14 @@ img {
     will-change: transform;
 }
 
+/* High quality rendering for caviar images */
+.caviar-bottom-image,
+.caviar-lid-image {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: high-quality;
+    image-rendering: crisp-edges;
+}
+
 /* Lazy loading for gallery images */
 .gallery-img {
     loading: lazy;
@@ -125,15 +133,6 @@ h1, h2, h3, h4, h5, h6 {
 .gold-text {
     color: var(--primary-gold);
     font-weight: 600;
-    text-shadow: 
-        1px 1px 0 rgba(0, 0, 0, 0.3),
-        -1px -1px 0 rgba(0, 0, 0, 0.3),
-        1px -1px 0 rgba(0, 0, 0, 0.3),
-        -1px 1px 0 rgba(0, 0, 0, 0.3),
-        0.5px 0.5px 0 rgba(0, 0, 0, 0.2),
-        -0.5px -0.5px 0 rgba(0, 0, 0, 0.2),
-        0.5px -0.5px 0 rgba(0, 0, 0, 0.2),
-        -0.5px 0.5px 0 rgba(0, 0, 0, 0.2);
 }
 
 .section-title {
@@ -649,7 +648,6 @@ h1, h2, h3, h4, h5, h6 {
     height: 100%;
     object-fit: cover;
     border-radius: 50%;
-    filter: brightness(0.9) contrast(1.2) saturate(1.1);
     transition: all 0.3s ease;
 }
 
@@ -675,7 +673,6 @@ h1, h2, h3, h4, h5, h6 {
     height: 100%;
     object-fit: cover;
     border-radius: 50%;
-    filter: brightness(0.9) contrast(1.2) saturate(1.1);
     transition: all 0.3s ease;
     transform: scale(1.2);
     clip-path: circle(50%);
@@ -685,7 +682,6 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Hover-Effekte - nur auf dem Deckel selbst */
 .caviar-container:hover .caviar-bottom-image {
-    filter: brightness(1.0) contrast(1.3) saturate(1.2);
     transform: rotate(-15deg);
     transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -697,13 +693,12 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .caviar-lid:hover .caviar-lid-image {
-    filter: brightness(1.0) contrast(1.3) saturate(1.2);
+    /* No filter - keep original quality */
 }
 
 /* Mobile Auto-Animation Classes - nur auf Mobile aktiv */
 @media (max-width: 768px) {
     .caviar-container.animate-mobile .caviar-bottom-image {
-        filter: brightness(1.0) contrast(1.3) saturate(1.2);
         transform: rotate(-15deg);
         transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
     }
@@ -714,7 +709,7 @@ h1, h2, h3, h4, h5, h6 {
     }
 
     .caviar-container.animate-mobile .caviar-lid-image {
-        filter: brightness(1.0) contrast(1.3) saturate(1.2);
+        /* No filter - keep original quality */
     }
 }
 
@@ -737,6 +732,83 @@ h1, h2, h3, h4, h5, h6 {
 @keyframes rotate {
     from { transform: rotate(0deg); }
     to { transform: rotate(360deg); }
+}
+
+/* Parallax Caviar Section */
+.parallax-caviar {
+    height: 70vh;
+    min-height: 600px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-section-2);
+}
+
+.parallax-content {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.parallax-image {
+    position: absolute;
+    top: -10%;
+    left: 0;
+    width: 100%;
+    height: 120%;
+    z-index: 1;
+}
+
+.parallax-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transform: translateY(0);
+    transition: transform 0.1s ease-out;
+}
+
+.parallax-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        135deg,
+        rgba(0, 0, 0, 0.4) 0%,
+        rgba(0, 0, 0, 0.2) 50%,
+        rgba(212, 175, 55, 0.3) 100%
+    );
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+}
+
+.parallax-text {
+    text-align: center;
+    color: white;
+    max-width: 600px;
+    padding: 2rem;
+}
+
+.parallax-title {
+    font-size: 3.5rem;
+    font-weight: 300;
+    margin-bottom: 1rem;
+    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    letter-spacing: 2px;
+}
+
+.parallax-subtitle {
+    font-size: 1.3rem;
+    font-weight: 400;
+    opacity: 0.9;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    letter-spacing: 1px;
 }
 
 /* Gallery Section */
@@ -1647,6 +1719,19 @@ h1, h2, h3, h4, h5, h6 {
         height: 300px;
     }
     
+    .parallax-caviar {
+        height: 60vh;
+        min-height: 500px;
+    }
+    
+    .parallax-title {
+        font-size: 2.5rem;
+    }
+    
+    .parallax-subtitle {
+        font-size: 1.1rem;
+    }
+    
     .btn-primary,
     .btn-secondary {
         width: 100%;
@@ -1680,6 +1765,24 @@ h1, h2, h3, h4, h5, h6 {
     
     .gallery-content p {
         font-size: 0.9rem;
+    }
+    
+    .parallax-caviar {
+        height: 50vh;
+        min-height: 400px;
+    }
+    
+    .parallax-title {
+        font-size: 2rem;
+        letter-spacing: 1px;
+    }
+    
+    .parallax-subtitle {
+        font-size: 1rem;
+    }
+    
+    .parallax-text {
+        padding: 1rem;
     }
     
     .service-card {
@@ -1952,7 +2055,7 @@ html.lenis {
 
 /* Sidebar Header - Compact */
 .sidebar-header {
-    padding: 1.5rem 1.5rem 1rem;
+    padding: 1rem 1.5rem 0.5rem;
     display: flex;
     justify-content: flex-end;
     align-items: center;
@@ -1994,11 +2097,11 @@ html.lenis {
 /* Sidebar Navigation */
 .sidebar-nav {
     flex: 0 0 auto;
-    padding: 1.5rem 1.5rem 0.5rem;
+    padding: 1rem 1.5rem 0.5rem;
 }
 
 .nav-section {
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
 }
 
 .nav-section-title {
@@ -2021,7 +2124,7 @@ html.lenis {
     align-items: center;
     gap: 1rem;
     padding: 0.8rem;
-    margin-bottom: 0.3rem;
+    margin-bottom: 0.2rem;
     background: rgba(255, 255, 255, 0.03);
     border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 12px;
@@ -2126,11 +2229,11 @@ html.lenis {
 
 /* Sidebar Actions */
 .sidebar-actions {
-    padding: 0 1.5rem 1rem;
+    padding: 0 1.5rem 0.5rem;
 }
 
 .action-section {
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
 }
 
 .sidebar-action-btn {
@@ -2138,7 +2241,7 @@ html.lenis {
     align-items: center;
     gap: 1rem;
     padding: 0.8rem;
-    margin-bottom: 0.3rem;
+    margin-bottom: 0.2rem;
     background: rgba(255, 255, 255, 0.03);
     border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 12px;
@@ -2256,7 +2359,7 @@ html.lenis {
 
 /* Sidebar Footer */
 .sidebar-footer {
-    padding: 1rem 1.5rem;
+    padding: 0.5rem 1.5rem;
     border-top: 1px solid rgba(212, 175, 55, 0.2);
     text-align: center;
 }
@@ -2269,15 +2372,15 @@ html.lenis {
 .sidebar-social {
     display: flex;
     justify-content: center;
-    gap: 1rem;
-    margin-bottom: 0.8rem;
+    gap: 0.8rem;
+    margin-bottom: 0.5rem;
 }
 
 .sidebar-social .social-link {
-    width: 40px;
-    height: 40px;
+    width: 35px;
+    height: 35px;
     background: rgba(212, 175, 55, 0.1);
-    border-radius: 10px;
+    border-radius: 8px;
     display: flex;
     align-items: center;
     justify-content: center;

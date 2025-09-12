@@ -70,6 +70,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize non-critical features after a short delay
     setTimeout(() => {
         initializeLenisScroll();
+        initializeParallaxEffect();
     }, 100);
     
     // Preload images in background (non-blocking)
@@ -1098,6 +1099,44 @@ function updateSidebarLanguageFlag() {
             sidebarLanguageFlag.className = 'fi fi-de flag-icon';
         }
     }
+}
+
+// Parallax Effect Function
+function initializeParallaxEffect() {
+    const parallaxImg = document.querySelector('.parallax-img');
+    if (!parallaxImg) return;
+    
+    let ticking = false;
+    
+    function updateParallax() {
+        const scrolled = window.pageYOffset;
+        const parallaxSection = document.querySelector('.parallax-caviar');
+        if (!parallaxSection) return;
+        
+        const rect = parallaxSection.getBoundingClientRect();
+        const sectionTop = rect.top + scrolled;
+        const sectionHeight = parallaxSection.offsetHeight;
+        
+        // Check if section is in viewport
+        if (rect.bottom >= 0 && rect.top <= window.innerHeight) {
+            const scrolledPast = scrolled - sectionTop;
+            const parallaxSpeed = 0.2; // Much gentler parallax effect
+            const yPos = -(scrolledPast * parallaxSpeed);
+            
+            parallaxImg.style.transform = `translateY(${yPos}px)`;
+        }
+        
+        ticking = false;
+    }
+    
+    function requestTick() {
+        if (!ticking) {
+            requestAnimationFrame(updateParallax);
+            ticking = true;
+        }
+    }
+    
+    window.addEventListener('scroll', requestTick, { passive: true });
 }
 
 // Scroll to Top Function
