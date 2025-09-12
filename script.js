@@ -7,17 +7,22 @@ const navMenu = document.querySelector('.nav-menu');
 // Lenis Scroll Instance
 let lenis;
 
-// Image loading system
+// Image loading system with priority order
 let imagesLoaded = 0;
 let totalImages = 0;
-const criticalImages = [
-    './Kaviar1.png',
-    './Kaviar2.png'
+const imageLoadingQueue = [
+    // Priority 1: Hero Background (highest priority)
+    './Holztisch-Background.png',
+    // Priority 2: Caviar Animation Images
+    './Kaviar-02.png',
+    './Kaviar-Deckel-Schwarz.png',
+    // Priority 3: Parallax Image
+    './Black-Caviar-1.jpg'
 ];
 
 function preloadImages() {
     return new Promise((resolve) => {
-        totalImages = criticalImages.length;
+        totalImages = imageLoadingQueue.length;
         imagesLoaded = 0;
         
         if (totalImages === 0) {
@@ -25,33 +30,67 @@ function preloadImages() {
             return;
         }
         
-        // Timeout nach 2 Sekunden, auch wenn nicht alle Bilder geladen sind
+        // Timeout nach 3 Sekunden für bessere Performance
         const timeout = setTimeout(() => {
-            console.log('Image loading timeout - proceeding anyway');
+            console.log('Priority image loading timeout - proceeding anyway');
             resolve();
-        }, 2000);
+        }, 3000);
         
-        criticalImages.forEach(src => {
+        imageLoadingQueue.forEach((src, index) => {
             const img = new Image();
             img.onload = () => {
                 imagesLoaded++;
-                console.log(`Image loaded: ${src} (${imagesLoaded}/${totalImages})`);
+                console.log(`Priority ${index + 1} image loaded: ${src} (${imagesLoaded}/${totalImages})`);
                 if (imagesLoaded === totalImages) {
                     clearTimeout(timeout);
+                    console.log('All priority images loaded successfully');
                     resolve();
                 }
             };
             img.onerror = () => {
                 imagesLoaded++;
-                console.log(`Image failed: ${src} (${imagesLoaded}/${totalImages})`);
+                console.log(`Priority ${index + 1} image failed: ${src} (${imagesLoaded}/${totalImages})`);
                 if (imagesLoaded === totalImages) {
                     clearTimeout(timeout);
+                    console.log('Priority image loading completed (with some failures)');
                     resolve();
                 }
             };
             img.src = src;
         });
     });
+}
+
+// Enhanced Lazy Loading System
+function initializeLazyLoading() {
+    // Intersection Observer für Lazy Loading
+    const imageObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const img = entry.target;
+                if (img.dataset.src) {
+                    img.src = img.dataset.src;
+                    img.removeAttribute('data-src');
+                    observer.unobserve(img);
+                }
+            }
+        });
+    }, {
+        rootMargin: '50px 0px', // Lade Bilder 50px bevor sie sichtbar werden
+        threshold: 0.1
+    });
+
+    // Alle Bilder mit data-src für Lazy Loading markieren
+    const lazyImages = document.querySelectorAll('img[loading="lazy"]');
+    lazyImages.forEach(img => {
+        if (!img.src) {
+            img.dataset.src = img.src || img.getAttribute('src');
+            img.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMSIgaGVpZ2h0PSIxIiB2aWV3Qm94PSIwIDAgMSAxIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9InRyYW5zcGFyZW50Ii8+PC9zdmc+'; // Transparentes Platzhalter-Bild
+        }
+        imageObserver.observe(img);
+    });
+
+    console.log(`Lazy loading initialized for ${lazyImages.length} images`);
 }
 
 // Initialize the application
@@ -73,11 +112,14 @@ document.addEventListener('DOMContentLoaded', function() {
         initializeParallaxEffect();
     }, 100);
     
-    // Preload images in background (non-blocking)
+    // Initialize lazy loading for non-critical images
+    initializeLazyLoading();
+    
+    // Preload priority images in background (non-blocking)
     preloadImages().then(() => {
-        console.log('All images loaded successfully');
+        console.log('All priority images loaded successfully');
     }).catch(() => {
-        console.log('Some images failed to load, but site is still functional');
+        console.log('Some priority images failed to load, but site is still functional');
     });
 });
 
