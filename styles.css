@@ -343,7 +343,7 @@ h1, h2, h3, h4, h5, h6 {
             rgba(212, 175, 55, 0.15) 0%, 
             rgba(26, 26, 26, 0.8) 70%
         ),
-        url('Holztisch-Background.png');
+        url('./Holztisch-Background.png');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -358,7 +358,7 @@ h1, h2, h3, h4, h5, h6 {
     left: 0;
     right: 0;
     bottom: 0;
-    background: url('Holztisch-Background.png');
+    background: url('./Holztisch-Background.png');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;

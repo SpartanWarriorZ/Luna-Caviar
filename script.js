@@ -999,9 +999,9 @@ function setTheme(theme) {
     const logo = document.querySelector('.logo-img');
     if (logo) {
         if (theme === 'dark') {
-            logo.src = 'Luna-Caviar-Logo-Weiss.png';
+            logo.src = './Luna-Caviar-Logo-Weiss.png';
         } else {
-            logo.src = 'Luna-Caviar-Logo-Schwarz.png';
+            logo.src = './Luna-Caviar-Logo-Schwarz.png';
         }
     }
 }
