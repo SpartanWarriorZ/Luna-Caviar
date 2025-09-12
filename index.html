@@ -10,14 +10,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flag-icons/css/flag-icons.min.css">
     <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
     
-    <!-- Preload images in priority order -->
-    <!-- 1. Hero Background (highest priority) -->
-    <link rel="preload" as="image" href="./Holztisch-Background.png">
-    <!-- 2. Caviar Animation Images (second priority) -->
-    <link rel="preload" as="image" href="./Kaviar-02.png">
-    <link rel="preload" as="image" href="./Kaviar-Deckel-Schwarz.png">
-    <!-- 3. Parallax Image (third priority) -->
-    <link rel="preload" as="image" href="./Black-Caviar-1.jpg">
+    <!-- Preload only essential images -->
+    <link rel="preload" as="image" href="./Kaviar1.png">
+    <link rel="preload" as="image" href="./Kaviar2.png">
 </head>
 <body>
     <!-- Navigation -->
@@ -25,7 +20,7 @@
         <div class="nav-container">
             <div class="logo">
                 <a href="#home" class="logo-link" onclick="scrollToTop(event)">
-                    <img src="./Luna-Caviar-Logo-Schwarz.png" alt="Luna Caviar Logo" class="logo-img" loading="eager">
+                    <img src="./Luna-Caviar-Logo-Schwarz.png" alt="Luna Caviar Logo" class="logo-img">
                 </a>
             </div>
             
@@ -210,12 +205,12 @@
                 <div class="caviar-container">
                     <!-- Unteres Kaviarbild (wird beim Scrollen sichtbar) -->
                     <div class="caviar-bottom">
-                        <img src="./Kaviar-02.png" alt="Premium Caviar" class="caviar-bottom-image" loading="eager">
+                        <img src="./Kaviar-02.png" alt="Premium Caviar" class="caviar-bottom-image">
                     </div>
                     
                     <!-- Kaviardeckel (öffnet sich beim Scrollen) -->
                     <div class="caviar-lid">
-                        <img src="./Kaviar-Deckel-Schwarz.png" alt="Kaviar Deckel" class="caviar-lid-image" loading="eager">
+                        <img src="./Kaviar-Deckel-Schwarz.png" alt="Kaviar Deckel" class="caviar-lid-image">
                     </div>
                 </div>
             </div>
@@ -288,7 +283,7 @@
     <section class="parallax-caviar">
         <div class="parallax-content">
             <div class="parallax-image">
-                <img src="./Black-Caviar-1.jpg" alt="Premium Black Caviar" class="parallax-img" loading="eager">
+                <img src="./Black-Caviar-1.jpg" alt="Premium Black Caviar" class="parallax-img">
             </div>
             <div class="parallax-overlay">
                 <div class="parallax-text">
@@ -454,7 +449,7 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-logo">
-                    <img src="./Luna-Caviar-Logo-Weiss.png" alt="Luna Caviar" class="footer-logo-img" loading="lazy">
+                    <img src="./Luna-Caviar-Logo-Weiss.png" alt="Luna Caviar" class="footer-logo-img">
                     <p data-de="Der Moment, in dem Luxus serviert wird" data-en="The moment when luxury is served">Der Moment, in dem Luxus serviert wird</p>
                 </div>
                 <div class="footer-links">
