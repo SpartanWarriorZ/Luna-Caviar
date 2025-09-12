@@ -55,7 +55,7 @@
         <nav class="sidebar-nav">
             <div class="nav-section">
                 <h4 class="nav-section-title">Navigation</h4>
-                <a href="#home" class="sidebar-link" onclick="closeMobileMenu()">
+                <a href="#home" class="sidebar-link" onclick="handleSidebarLinkClick('home', event)">
                     <div class="sidebar-link-icon">
                         <i class="fas fa-home"></i>
                     </div>
@@ -68,7 +68,7 @@
                     </div>
                 </a>
                 
-                <a href="#services" class="sidebar-link" onclick="closeMobileMenu()">
+                <a href="#services" class="sidebar-link" onclick="handleSidebarLinkClick('services', event)">
                     <div class="sidebar-link-icon">
                         <i class="fas fa-gem"></i>
                     </div>
@@ -81,7 +81,7 @@
                     </div>
                 </a>
                 
-                <a href="#about" class="sidebar-link" onclick="closeMobileMenu()">
+                <a href="#about" class="sidebar-link" onclick="handleSidebarLinkClick('about', event)">
                     <div class="sidebar-link-icon">
                         <i class="fas fa-info-circle"></i>
                     </div>
@@ -94,7 +94,7 @@
                     </div>
                 </a>
                 
-                <a href="#contact" class="sidebar-link" onclick="closeMobileMenu()">
+                <a href="#contact" class="sidebar-link" onclick="handleSidebarLinkClick('contact', event)">
                     <div class="sidebar-link-icon">
                         <i class="fas fa-envelope"></i>
                     </div>
@@ -114,7 +114,7 @@
             <div class="action-section">
                 <h4 class="nav-section-title">Aktionen</h4>
                 
-                <button class="sidebar-action-btn theme-action" onclick="toggleTheme(); closeMobileMenu();">
+                <button class="sidebar-action-btn theme-action" onclick="toggleTheme();">
                     <div class="sidebar-action-icon">
                         <i class="fas fa-moon" id="sidebar-theme-icon"></i>
                     </div>
@@ -192,6 +192,68 @@
         </div>
     </section>
 
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2 class="section-title animated-title">Über <span class="gold-text">Luna Caviar</span></h2>
+                    <p class="about-description">
+                        Luna Caviar verbindet kulinarische Exzellenz, Inszenierung und Interaktion zu einem unvergesslichen Luxusmoment. 
+                        Unsere Mission ist es, den Genuss von Premium-Caviar als außergewöhnliches Erlebnis neu zu definieren – elegant, mobil, interaktiv.
+                    </p>
+                    
+                    <div class="about-features">
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-medal"></i>
+                            </div>
+                            <div class="feature-content">
+                                <h4>Premium Qualität</h4>
+                                <p>Nur der beste Caviar aus nachhaltiger Zucht</p>
+                            </div>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div class="feature-content">
+                                <h4>Elegante Hosts</h4>
+                                <p>Geschult in Etikette & Service, maßgeschneiderte Outfits</p>
+                            </div>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-sparkles"></i>
+                            </div>
+                            <div class="feature-content">
+                                <h4>Exklusive Inszenierung</h4>
+                                <p>Choreografie, Eleganz und Interaktion im Fokus</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="about-stats">
+                    <div class="stat-item">
+                        <div class="stat-number" data-target="100" data-suffix="%">0%</div>
+                        <div class="stat-label">Caviar Fokus</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" data-target="24" data-suffix="+">0+</div>
+                        <div class="stat-label">Events pro Jahr</div>
+                    </div>
+                    <div class="stat-item premium-item">
+                        <div class="stat-number" data-target="0" data-text="Premium">Premium</div>
+                        <div class="stat-label">Qualität</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Services Section -->
     <section id="services" class="services">
         <div class="container">
@@ -254,68 +316,6 @@
                     </ul>
                     <div class="service-price"><span class="price">Auf Anfrage</span></div>
                     <button class="btn-service" onclick="selectPackage('custom-event')"><span>Anfrage Stellen</span></button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="about">
-        <div class="container">
-            <div class="about-content">
-                <div class="about-text">
-                    <h2 class="section-title animated-title">Über <span class="gold-text">Luna Caviar</span></h2>
-                    <p class="about-description">
-                        Luna Caviar verbindet kulinarische Exzellenz, Inszenierung und Interaktion zu einem unvergesslichen Luxusmoment. 
-                        Unsere Mission ist es, den Genuss von Premium-Caviar als außergewöhnliches Erlebnis neu zu definieren – elegant, mobil, interaktiv.
-                    </p>
-                    
-                    <div class="about-features">
-                        <div class="feature-item">
-                            <div class="feature-icon">
-                                <i class="fas fa-medal"></i>
-                            </div>
-                            <div class="feature-content">
-                                <h4>Premium Qualität</h4>
-                                <p>Nur der beste Caviar aus nachhaltiger Zucht</p>
-                            </div>
-                        </div>
-                        
-                        <div class="feature-item">
-                            <div class="feature-icon">
-                                <i class="fas fa-users"></i>
-                            </div>
-                            <div class="feature-content">
-                                <h4>Elegante Hosts</h4>
-                                <p>Geschult in Etikette & Service, maßgeschneiderte Outfits</p>
-                            </div>
-                        </div>
-                        
-                        <div class="feature-item">
-                            <div class="feature-icon">
-                                <i class="fas fa-sparkles"></i>
-                            </div>
-                            <div class="feature-content">
-                                <h4>Exklusive Inszenierung</h4>
-                                <p>Choreografie, Eleganz und Interaktion im Fokus</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="about-stats">
-                    <div class="stat-item">
-                        <div class="stat-number">100%</div>
-                        <div class="stat-label">Caviar Fokus</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">24+</div>
-                        <div class="stat-label">Events pro Jahr</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">Premium</div>
-                        <div class="stat-label">Qualität</div>
-                    </div>
                 </div>
             </div>
         </div>

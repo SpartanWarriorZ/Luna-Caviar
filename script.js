@@ -15,7 +15,132 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeNavigation();
     initializeAnimations();
     initializeTheme();
+    initializeMobileNavbar();
+    initializeMobileKaviarAnimation();
+    initializeCounterAnimation();
 });
+
+// Initialize mobile navbar functionality
+function initializeMobileNavbar() {
+    // Reset navbar state on window resize
+    window.addEventListener('resize', function() {
+        const navbar = document.querySelector('.navbar');
+        if (window.innerWidth > 768 && navbar) {
+            // Reset navbar state on desktop
+            navbar.classList.remove('hidden', 'visible');
+        }
+    });
+    
+    // Ensure navbar is visible on page load
+    const navbar = document.querySelector('.navbar');
+    if (navbar && window.innerWidth <= 768) {
+        navbar.classList.add('visible');
+    }
+    
+    // Add additional scroll listener for mobile navbar (backup)
+    let ticking = false;
+    function updateNavbarOnScrollEvent() {
+        if (!ticking) {
+            requestAnimationFrame(function() {
+                const scrollY = window.pageYOffset || document.documentElement.scrollTop;
+                if (window.innerWidth <= 768) {
+                    handleMobileNavbarVisibility(scrollY);
+                }
+                ticking = false;
+            });
+            ticking = true;
+        }
+    }
+    
+    // Listen to both wheel and touch events for better mobile support
+    window.addEventListener('scroll', updateNavbarOnScrollEvent, { passive: true });
+    window.addEventListener('wheel', updateNavbarOnScrollEvent, { passive: true });
+    window.addEventListener('touchmove', updateNavbarOnScrollEvent, { passive: true });
+    
+    // Debug: Add test functions to window for manual testing
+    window.testNavbarHide = function() {
+        const navbar = document.querySelector('.navbar');
+        if (navbar) {
+            navbar.classList.add('hidden');
+            console.log('Navbar hidden manually');
+        }
+    };
+    
+    window.testNavbarShow = function() {
+        const navbar = document.querySelector('.navbar');
+        if (navbar) {
+            navbar.classList.remove('hidden');
+            navbar.classList.add('visible');
+            console.log('Navbar shown manually');
+        }
+    };
+    
+    window.testScrollDetection = function() {
+        console.log('Current scroll position:', window.pageYOffset);
+        console.log('Window width:', window.innerWidth);
+        console.log('Is mobile:', window.innerWidth <= 768);
+        console.log('Lenis instance:', lenis);
+    };
+    
+    window.simulateScroll = function(direction) {
+        const currentScroll = window.pageYOffset;
+        const newScroll = direction === 'down' ? currentScroll + 200 : Math.max(0, currentScroll - 200);
+        window.scrollTo(0, newScroll);
+        console.log('Simulated scroll to:', newScroll);
+    };
+    
+    window.testKaviarAnimation = function() {
+        const caviarContainer = document.querySelector('.caviar-container');
+        if (caviarContainer) {
+            caviarContainer.classList.toggle('animate-mobile');
+            console.log('Kaviar animation toggled manually');
+        }
+    };
+}
+
+// Initialize mobile kaviar animation
+function initializeMobileKaviarAnimation() {
+    // Only run on mobile devices
+    if (window.innerWidth > 768) return;
+    
+    const caviarContainer = document.querySelector('.caviar-container');
+    if (!caviarContainer) return;
+    
+    // Create intersection observer
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // Kaviar is in center of viewport - trigger animation
+                caviarContainer.classList.add('animate-mobile');
+                console.log('Kaviar animation triggered on mobile');
+            } else {
+                // Kaviar is out of viewport - remove animation
+                caviarContainer.classList.remove('animate-mobile');
+                console.log('Kaviar animation stopped on mobile');
+            }
+        });
+    }, {
+        // Trigger when element is 50% visible (center of screen)
+        threshold: 0.5,
+        // Add some margin to trigger earlier
+        rootMargin: '0px 0px -20% 0px'
+    });
+    
+    // Start observing the caviar container
+    observer.observe(caviarContainer);
+    
+    // Re-initialize on window resize
+    window.addEventListener('resize', function() {
+        if (window.innerWidth <= 768) {
+            // Re-observe on mobile
+            observer.observe(caviarContainer);
+        } else {
+            // Stop observing on desktop
+            observer.unobserve(caviarContainer);
+            caviarContainer.classList.remove('animate-mobile');
+        }
+    });
+}
 
 // Lenis Scroll Initialization
 function initializeLenisScroll() {
@@ -206,6 +331,13 @@ function openMobileMenu() {
     
     if (!mobileMenuBtn || !mobileSidebarOverlay || !mobileSidebar) return;
     
+    // Show navbar when opening mobile menu
+    const navbar = document.querySelector('.navbar');
+    if (navbar) {
+        navbar.classList.remove('hidden');
+        navbar.classList.add('visible');
+    }
+    
     // Add active classes
     mobileMenuBtn.classList.add('active');
     mobileSidebarOverlay.classList.add('show');
@@ -246,6 +378,22 @@ function closeMobileMenu() {
     if (lenis) {
         lenis.start();
     }
+}
+
+// Handle sidebar link clicks with smooth scroll
+function handleSidebarLinkClick(sectionId, event) {
+    // Prevent default link behavior
+    if (event) {
+        event.preventDefault();
+    }
+    
+    // Close menu first
+    closeMobileMenu();
+    
+    // Wait for menu to close, then scroll smoothly
+    setTimeout(() => {
+        scrollToSection(sectionId);
+    }, 500); // Longer delay to ensure menu is fully closed and Lenis is restarted
 }
 
 // Update sidebar theme icon
@@ -520,12 +668,57 @@ function updateNavbarOnScroll(scrollY) {
     } else {
         navbar.classList.remove('scrolled');
     }
+    
+    // Mobile navbar hide/show functionality
+    handleMobileNavbarVisibility(scrollY);
+    
+    // Debug: Log scroll position on mobile
+    if (window.innerWidth <= 768) {
+        console.log('Scroll Y:', scrollY, 'Window width:', window.innerWidth);
+    }
+}
+
+// Mobile Navbar Hide/Show Logic
+let lastScrollY = 0;
+let isScrollingDown = false;
+let scrollTimeout;
+
+function handleMobileNavbarVisibility(scrollY) {
+    // Only apply on mobile devices
+    if (window.innerWidth > 768) return;
+    
+    const navbar = document.querySelector('.navbar');
+    if (!navbar) return;
+    
+    // Determine scroll direction - more sensitive detection
+    const scrollDifference = scrollY - lastScrollY;
+    isScrollingDown = scrollDifference > 0; // Any downward movement
+    
+    // Clear existing timeout
+    if (scrollTimeout) {
+        clearTimeout(scrollTimeout);
+    }
+    
+    // Show navbar when scrolling up (any upward movement) or at top
+    if (scrollY <= 50 || scrollDifference < 0) {
+        navbar.classList.remove('hidden');
+        navbar.classList.add('visible');
+        console.log('Navbar: Showing (scroll up or at top) - ScrollY:', scrollY, 'Difference:', scrollDifference);
+    } else if (isScrollingDown && scrollY > 100) {
+        // Hide navbar when scrolling down - immediate response
+        navbar.classList.remove('visible');
+        navbar.classList.add('hidden');
+        console.log('Navbar: Hiding (scroll down) - ScrollY:', scrollY, 'Difference:', scrollDifference);
+    }
+    
+    lastScrollY = scrollY;
 }
 
 // Scroll Animations Trigger
 function triggerScrollAnimations() {
     const animateElements = document.querySelectorAll('.animate-on-scroll');
     const animatedTitles = document.querySelectorAll('.animated-title');
+    const statItems = document.querySelectorAll('.stat-item');
     
     // Regular scroll animations
     animateElements.forEach(el => {
@@ -554,12 +747,29 @@ function triggerScrollAnimations() {
             title.classList.add('animate-out');
         }
     });
+    
+    // Counter animation for statistics
+    statItems.forEach((item, index) => {
+        const rect = item.getBoundingClientRect();
+        const isVisible = rect.top < window.innerHeight * 0.8 && rect.bottom > 0;
+        
+        if (isVisible && !item.classList.contains('animate-in') && !item.classList.contains('animation-triggered')) {
+            // Mark as triggered to prevent multiple animations
+            item.classList.add('animation-triggered');
+            
+            // Add staggered animation delay
+            setTimeout(() => {
+                item.classList.add('animate-in');
+                animateCounter(item);
+            }, index * 200);
+        }
+    });
 }
 
 // Animation Functions
 function initializeAnimations() {
     // Add animation classes to elements
-    const animateElements = document.querySelectorAll('.service-card, .feature-item, .stat-item, .contact-item');
+    const animateElements = document.querySelectorAll('.service-card, .feature-item, .contact-item');
     animateElements.forEach(el => {
         el.classList.add('animate-on-scroll');
     });
@@ -569,6 +779,63 @@ function initializeAnimations() {
     
     // Parallax effect for hero logo
     initializeParallaxEffects();
+}
+
+// Initialize Counter Animation
+function initializeCounterAnimation() {
+    // Counter animation will be triggered by scroll animations
+    console.log('Counter animation initialized');
+}
+
+// Animate Counter Function
+function animateCounter(statItem) {
+    const counterElement = statItem.querySelector('.stat-number');
+    if (!counterElement) return;
+    
+    // Check if animation already completed
+    if (counterElement.classList.contains('animation-completed')) {
+        return;
+    }
+    
+    const target = parseInt(counterElement.getAttribute('data-target'));
+    const suffix = counterElement.getAttribute('data-suffix') || '';
+    const text = counterElement.getAttribute('data-text');
+    
+    // If it's a text-based counter (like "Premium"), just show the text
+    if (text) {
+        counterElement.textContent = text;
+        counterElement.classList.add('animation-completed');
+        return;
+    }
+    
+    // If it's a number-based counter, animate it
+    if (target && !isNaN(target)) {
+        // Clear any existing animation
+        if (counterElement.animationTimer) {
+            clearInterval(counterElement.animationTimer);
+        }
+        
+        let current = 0;
+        const duration = 2000; // 2 seconds
+        const startTime = Date.now();
+        
+        counterElement.animationTimer = setInterval(() => {
+            const elapsed = Date.now() - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            
+            // Use easing function for smooth animation
+            const easeOutQuart = 1 - Math.pow(1 - progress, 4);
+            current = Math.floor(target * easeOutQuart);
+            
+            counterElement.textContent = current + suffix;
+            
+            if (progress >= 1) {
+                clearInterval(counterElement.animationTimer);
+                counterElement.textContent = target + suffix;
+                counterElement.classList.add('animation-completed');
+            }
+        }, 16); // ~60fps
+    }
 }
 
 // Parallax Effects
