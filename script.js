@@ -7,18 +7,77 @@ const navMenu = document.querySelector('.nav-menu');
 // Lenis Scroll Instance
 let lenis;
 
+// Image loading system
+let imagesLoaded = 0;
+let totalImages = 0;
+const criticalImages = [
+    './Kaviar1.png',
+    './Kaviar2.png'
+];
+
+function preloadImages() {
+    return new Promise((resolve) => {
+        totalImages = criticalImages.length;
+        imagesLoaded = 0;
+        
+        if (totalImages === 0) {
+            resolve();
+            return;
+        }
+        
+        // Timeout nach 2 Sekunden, auch wenn nicht alle Bilder geladen sind
+        const timeout = setTimeout(() => {
+            console.log('Image loading timeout - proceeding anyway');
+            resolve();
+        }, 2000);
+        
+        criticalImages.forEach(src => {
+            const img = new Image();
+            img.onload = () => {
+                imagesLoaded++;
+                console.log(`Image loaded: ${src} (${imagesLoaded}/${totalImages})`);
+                if (imagesLoaded === totalImages) {
+                    clearTimeout(timeout);
+                    resolve();
+                }
+            };
+            img.onerror = () => {
+                imagesLoaded++;
+                console.log(`Image failed: ${src} (${imagesLoaded}/${totalImages})`);
+                if (imagesLoaded === totalImages) {
+                    clearTimeout(timeout);
+                    resolve();
+                }
+            };
+            img.src = src;
+        });
+    });
+}
+
 // Initialize the application
 document.addEventListener('DOMContentLoaded', function() {
-    initializeLenisScroll();
-    initializeCalendar();
-    initializeFormValidation();
-    initializeNavigation();
-    initializeAnimations();
+    // Initialize critical functionality immediately
     initializeTheme();
     initializeLanguage();
+    initializeNavigation();
     initializeMobileNavbar();
-    initializeMobileKaviarAnimation();
+    initializeCalendar();
+    initializeFormValidation();
+    initializeAnimations();
     initializeCounterAnimation();
+    initializeMobileKaviarAnimation();
+    
+    // Initialize non-critical features after a short delay
+    setTimeout(() => {
+        initializeLenisScroll();
+    }, 100);
+    
+    // Preload images in background (non-blocking)
+    preloadImages().then(() => {
+        console.log('All images loaded successfully');
+    }).catch(() => {
+        console.log('Some images failed to load, but site is still functional');
+    });
 });
 
 // Initialize mobile navbar functionality

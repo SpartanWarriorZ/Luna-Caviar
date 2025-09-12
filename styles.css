@@ -5,6 +5,25 @@
     box-sizing: border-box;
 }
 
+/* Loading State - Removed for instant loading */
+
+@keyframes fadeInImage {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Image loading optimizations */
+img {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+    will-change: transform;
+}
+
+/* Lazy loading for gallery images */
+.gallery-img {
+    loading: lazy;
+}
+
 :root {
     --primary-gold: #D4AF37;
     --secondary-gold: #F4E4BC;
@@ -718,6 +737,90 @@ h1, h2, h3, h4, h5, h6 {
 @keyframes rotate {
     from { transform: rotate(0deg); }
     to { transform: rotate(360deg); }
+}
+
+/* Gallery Section */
+.gallery {
+    padding: 6rem 0;
+    background: var(--bg-section-1);
+    transition: all 0.3s ease;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.gallery-item {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.gallery-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);
+}
+
+.gallery-image {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    overflow: hidden;
+}
+
+.gallery-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: all 0.4s ease;
+}
+
+.gallery-item:hover .gallery-img {
+    transform: scale(1.05);
+}
+
+.gallery-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        135deg,
+        rgba(0, 0, 0, 0.7) 0%,
+        rgba(0, 0, 0, 0.3) 50%,
+        rgba(212, 175, 55, 0.8) 100%
+    );
+    display: flex;
+    align-items: flex-end;
+    padding: 2rem;
+    opacity: 0;
+    transition: all 0.4s ease;
+}
+
+.gallery-item:hover .gallery-overlay {
+    opacity: 1;
+}
+
+.gallery-content h3 {
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.gallery-content p {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1rem;
+    font-weight: 400;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
 }
 
 /* Services Section */
@@ -1535,6 +1638,15 @@ h1, h2, h3, h4, h5, h6 {
         margin: 0 auto;
     }
     
+    .gallery-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .gallery-image {
+        height: 300px;
+    }
+    
     .btn-primary,
     .btn-secondary {
         width: 100%;
@@ -1544,8 +1656,30 @@ h1, h2, h3, h4, h5, h6 {
     
     .services,
     .about,
-    .contact {
+    .contact,
+    .gallery {
         padding: 4rem 0;
+    }
+    
+    .gallery-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .gallery-image {
+        height: 250px;
+    }
+    
+    .gallery-overlay {
+        padding: 1.5rem;
+    }
+    
+    .gallery-content h3 {
+        font-size: 1.3rem;
+    }
+    
+    .gallery-content p {
+        font-size: 0.9rem;
     }
     
     .service-card {
