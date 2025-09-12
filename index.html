@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luna Caviar - Exklusiver Mobiler Caviar-Service</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <img src="Luna-Caviar-Logo-Schwarz.png" alt="Luna Caviar Logo" class="logo-img">
+            </div>
+            <div class="nav-menu">
+                <a href="#home" class="nav-link">Home</a>
+                <a href="#services" class="nav-link">Services</a>
+                <a href="#about" class="nav-link">Über Uns</a>
+                <a href="#contact" class="nav-link">Kontakt</a>
+                <button class="booking-btn-nav" onclick="openBookingModal()">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>Jetzt Buchen</span>
+                </button>
+            </div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1 class="hero-title">Der Moment, in dem<br><span class="gold-text">Luxus serviert wird</span></h1>
+                <p class="hero-subtitle">Exklusiver, mobiler Caviar-Service für Premium-Events.<br>Stilvolle Hosts servieren direkt bei Ihren Gästen frisch geöffneten Premium-Caviar.</p>
+                <div class="hero-buttons">
+                    <button class="btn-primary" onclick="openBookingModal()">
+                        <i class="fas fa-calendar-check"></i>
+                        <span>Event Buchen</span>
+                    </button>
+                    <button class="btn-secondary" onclick="scrollToSection('services')">
+                        <i class="fas fa-arrow-down"></i>
+                        <span>Mehr erfahren</span>
+                    </button>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="caviar-container">
+                    <!-- Unteres Kaviarbild (wird beim Scrollen sichtbar) -->
+                    <div class="caviar-bottom">
+                        <img src="kaviar-02.png" alt="Premium Caviar" class="caviar-bottom-image">
+                    </div>
+                    
+                    <!-- Kaviardeckel (öffnet sich beim Scrollen) -->
+                    <div class="caviar-lid">
+                        <img src="Kaviar-Deckel-Schwarz.png" alt="Kaviar Deckel" class="caviar-lid-image">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title animated-title">Unsere <span class="gold-text">Luxus-Pakete</span></h2>
+                <p class="section-subtitle">Wählen Sie das perfekte Erlebnis für Ihr Event</p>
+            </div>
+            
+            <div class="services-grid">
+                <!-- Caviar Stroll -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-gem"></i>
+                    </div>
+                    <h3 class="service-title">Caviar Stroll</h3>
+                    <div class="service-duration">2 Stunden</div>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i>2 elegante Hosts</li>
+                        <li><i class="fas fa-check"></i>500g Premium Caviar</li>
+                        <li><i class="fas fa-check"></i>Pur oder auf Mini-Bellinis</li>
+                        <li><i class="fas fa-check"></i>Perlmuttlöffel & Requisiten</li>
+                        <li><i class="fas fa-check"></i>Elegante Präsentation</li>
+                    </ul>
+                    <div class="service-price">ab <span class="price">3.000€</span></div>
+                    <button class="btn-service" onclick="selectPackage('caviar-stroll')"><span>Paket Wählen</span></button>
+                </div>
+
+                <!-- Caviar Indulgence -->
+                <div class="service-card featured">
+                    <div class="featured-badge">Beliebt</div>
+                    <div class="service-icon">
+                        <i class="fas fa-crown"></i>
+                    </div>
+                    <h3 class="service-title">Caviar Indulgence</h3>
+                    <div class="service-duration">4 Stunden</div>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i>2 elegante Hosts</li>
+                        <li><i class="fas fa-check"></i>1000g Premium Caviar</li>
+                        <li><i class="fas fa-check"></i>Wahlweise 2 Sorten</li>
+                        <li><i class="fas fa-check"></i>Pur oder auf Mini-Bellinis</li>
+                        <li><i class="fas fa-check"></i>Exklusive Inszenierung</li>
+                    </ul>
+                    <div class="service-price">ab <span class="price">5.000€</span></div>
+                    <button class="btn-service" onclick="selectPackage('caviar-indulgence')"><span>Paket Wählen</span></button>
+                </div>
+
+                <!-- Custom Event -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h3 class="service-title">Custom Event</h3>
+                    <div class="service-duration">Individuell</div>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i>2+ elegante Hosts</li>
+                        <li><i class="fas fa-check"></i>Variable Caviar-Menge</li>
+                        <li><i class="fas fa-check"></i>Pur oder auf Mini-Bellinis</li>
+                        <li><i class="fas fa-check"></i>Video & Social Media Service</li>
+                        <li><i class="fas fa-check"></i>Maßgeschneiderte Inszenierung</li>
+                    </ul>
+                    <div class="service-price"><span class="price">Auf Anfrage</span></div>
+                    <button class="btn-service" onclick="selectPackage('custom-event')"><span>Anfrage Stellen</span></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2 class="section-title animated-title">Über <span class="gold-text">Luna Caviar</span></h2>
+                    <p class="about-description">
+                        Luna Caviar verbindet kulinarische Exzellenz, Inszenierung und Interaktion zu einem unvergesslichen Luxusmoment. 
+                        Unsere Mission ist es, den Genuss von Premium-Caviar als außergewöhnliches Erlebnis neu zu definieren – elegant, mobil, interaktiv.
+                    </p>
+                    
+                    <div class="about-features">
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-medal"></i>
+                            </div>
+                            <div class="feature-content">
+                                <h4>Premium Qualität</h4>
+                                <p>Nur der beste Caviar aus nachhaltiger Zucht</p>
+                            </div>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div class="feature-content">
+                                <h4>Elegante Hosts</h4>
+                                <p>Geschult in Etikette & Service, maßgeschneiderte Outfits</p>
+                            </div>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-sparkles"></i>
+                            </div>
+                            <div class="feature-content">
+                                <h4>Exklusive Inszenierung</h4>
+                                <p>Choreografie, Eleganz und Interaktion im Fokus</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="about-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">100%</div>
+                        <div class="stat-label">Caviar Fokus</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">24+</div>
+                        <div class="stat-label">Events pro Jahr</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">Premium</div>
+                        <div class="stat-label">Qualität</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title animated-title">Kontakt & <span class="gold-text">Buchung</span></h2>
+                <p class="section-subtitle">Lassen Sie uns Ihr Event zu einem unvergesslichen Erlebnis machen</p>
+            </div>
+            
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>E-Mail</h4>
+                            <p>info@lunacaviar.de</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Telefon</h4>
+                            <p>+49 (0) 123 456 789</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Verfügbarkeit</h4>
+                            <p>Limitierte Buchungen für maximale Exklusivität</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="booking-cta">
+                    <h3>Bereit für Ihr Luxus-Erlebnis?</h3>
+                    <p>Buchen Sie jetzt Ihren exklusiven Caviar-Service</p>
+                    <button class="btn-primary large" onclick="openBookingModal()">
+                        <i class="fas fa-calendar-check"></i>
+                        <span>Jetzt Buchen</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="Luna-Caviar-Logo-Weiss.png" alt="Luna Caviar" class="footer-logo-img">
+                    <p>Der Moment, in dem Luxus serviert wird</p>
+                </div>
+                <div class="footer-links">
+                    <a href="#home">Home</a>
+                    <a href="#services">Services</a>
+                    <a href="#about">Über Uns</a>
+                    <a href="#contact">Kontakt</a>
+                </div>
+                <div class="footer-social">
+                    <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-tiktok"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Luna Caviar. Alle Rechte vorbehalten.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Booking Modal -->
+    <div id="bookingModal" class="modal" data-lenis-prevent>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Event Buchen</h3>
+                <span class="close" onclick="closeBookingModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="bookingForm" class="booking-form">
+                    <div class="form-group">
+                        <label for="eventType">Event Typ</label>
+                        <select id="eventType" name="eventType" required>
+                            <option value="">Bitte wählen...</option>
+                            <option value="hochzeit">Hochzeit</option>
+                            <option value="private-feier">Private Luxusfeier</option>
+                            <option value="product-launch">Produkt-Launch</option>
+                            <option value="corporate">Corporate Event</option>
+                            <option value="kunst-mode">Kunst- & Modeevent</option>
+                            <option value="sonstiges">Sonstiges</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="package">Gewünschtes Paket</label>
+                        <select id="package" name="package" required>
+                            <option value="">Bitte wählen...</option>
+                            <option value="caviar-stroll">Caviar Stroll (2h, ab 3.000€)</option>
+                            <option value="caviar-indulgence">Caviar Indulgence (4h, ab 5.000€)</option>
+                            <option value="custom-event">Custom Event (individuell)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="eventDate">Event Datum</label>
+                            <input type="date" id="eventDate" name="eventDate" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="eventTime">Uhrzeit</label>
+                            <input type="time" id="eventTime" name="eventTime" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="guestCount">Anzahl Gäste</label>
+                        <input type="number" id="guestCount" name="guestCount" min="10" required>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="firstName">Vorname</label>
+                            <input type="text" id="firstName" name="firstName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName">Nachname</label>
+                            <input type="text" id="lastName" name="lastName" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">E-Mail</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">Telefon</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="location">Veranstaltungsort</label>
+                        <textarea id="location" name="location" rows="2" placeholder="Adresse oder Beschreibung des Veranstaltungsorts" required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Zusätzliche Wünsche</label>
+                        <textarea id="message" name="message" rows="4" placeholder="Besondere Wünsche, Allergien, oder weitere Informationen..."></textarea>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="button" class="btn-secondary" onclick="closeBookingModal()"><span>Abbrechen</span></button>
+                        <button type="submit" class="btn-primary"><span>Buchungsanfrage Senden</span></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
