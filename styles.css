@@ -1228,6 +1228,23 @@ h1, h2, h3, h4, h5, h6 {
     text-shadow: none;
 }
 
+/* Luxus Text Animation */
+.luxus-animated {
+    background: linear-gradient(45deg, 
+        var(--primary-gold) 0%, 
+        var(--accent-gold) 25%, 
+        var(--secondary-gold) 50%, 
+        var(--accent-gold) 75%, 
+        var(--primary-gold) 100%);
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: premiumShine 3s ease-in-out infinite;
+    text-shadow: none;
+    font-weight: 600;
+}
+
 /* Premium Item - nur für Schrift-Animation */
 .stat-item.premium-item {
     position: relative;
