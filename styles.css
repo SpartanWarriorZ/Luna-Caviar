@@ -2005,8 +2005,11 @@ html.lenis {
     height: 2px;
     background: var(--text-primary);
     border-radius: 1px;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    will-change: transform, opacity;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
 }
 
 /* Hamburger Animation zu X */
@@ -2038,13 +2041,33 @@ html.lenis {
     backdrop-filter: blur(8px);
     opacity: 0;
     visibility: hidden;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: opacity 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), visibility 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    will-change: opacity;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
     z-index: 9998;
 }
 
 .mobile-sidebar-overlay.show {
     opacity: 1;
     visibility: visible;
+}
+
+/* iOS Safari Performance Optimizations */
+@supports (-webkit-touch-callout: none) {
+    .mobile-sidebar,
+    .mobile-sidebar-overlay,
+    .hamburger-line,
+    .sidebar-link,
+    .sidebar-action-btn,
+    .sidebar-close,
+    .sidebar-link-icon,
+    .sidebar-action-icon {
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+        -webkit-perspective: 1000px;
+        perspective: 1000px;
+    }
 }
 
 /* Mobile Sidebar */
@@ -2061,11 +2084,17 @@ html.lenis {
     backdrop-filter: blur(20px);
     border-left: 1px solid rgba(212, 175, 55, 0.2);
     box-shadow: -10px 0 40px rgba(0, 0, 0, 0.5);
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transform: translateX(100%);
     z-index: 9999;
     overflow-y: auto;
     display: flex;
     flex-direction: column;
+    will-change: transform;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-perspective: 1000px;
+    perspective: 1000px;
 }
 
 /* Light Mode Sidebar */
@@ -2080,6 +2109,7 @@ html.lenis {
 
 .mobile-sidebar.show {
     right: 0;
+    transform: translateX(0);
 }
 
 /* Sidebar Header - Compact */
@@ -2099,10 +2129,13 @@ html.lenis {
     color: white;
     font-size: 1.1rem;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     display: flex;
     align-items: center;
     justify-content: center;
+    will-change: transform, background-color;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
 }
 
 .sidebar-close:hover {
@@ -2159,9 +2192,12 @@ html.lenis {
     border-radius: 12px;
     color: white;
     text-decoration: none;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     position: relative;
     overflow: hidden;
+    will-change: transform, box-shadow;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
 }
 
 /* Light Mode Sidebar Links */
@@ -2205,7 +2241,10 @@ html.lenis {
     justify-content: center;
     color: var(--primary-gold);
     font-size: 1rem;
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    will-change: transform, background-color;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
 }
 
 .sidebar-link:hover .sidebar-link-icon {
@@ -2276,11 +2315,14 @@ html.lenis {
     border-radius: 12px;
     color: white;
     text-decoration: none;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     position: relative;
     overflow: hidden;
     width: 100%;
     cursor: pointer;
+    will-change: transform, box-shadow;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
 }
 
 /* Light Mode Action Buttons */
@@ -2324,7 +2366,10 @@ html.lenis {
     justify-content: center;
     color: var(--primary-gold);
     font-size: 1rem;
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    will-change: transform, background-color;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
 }
 
 .sidebar-action-btn:hover .sidebar-action-icon {
