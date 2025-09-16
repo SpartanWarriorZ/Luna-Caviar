@@ -3,16 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Exklusiver, mobiler Caviar-Service für Premium-Events. Stilvolle Hosts servieren direkt bei Ihren Gästen frisch geöffneten Premium-Caviar.">
+    <meta name="robots" content="index, follow">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Luna Caviar - Exklusiver Mobiler Caviar-Service</title>
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flag-icons/css/flag-icons.min.css">
-    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"></noscript>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"></noscript>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flag-icons/css/flag-icons.min.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flag-icons/css/flag-icons.min.css"></noscript>
     
-    <!-- Preload only essential images -->
-    <link rel="preload" as="image" href="./Kaviar1.png">
-    <link rel="preload" as="image" href="./Kaviar2.png">
+    <!-- Preload critical JavaScript -->
+    <link rel="preload" href="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js" as="script">
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js" defer></script>
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" as="image" href="./Holztisch-Background.webp" fetchpriority="high">
+    <link rel="preload" as="image" href="./Kaviar-02.webp" fetchpriority="high">
+    <link rel="preload" as="image" href="./Kaviar-Deckel-Schwarz.webp" fetchpriority="high">
+    <link rel="preload" as="image" href="./Luna-Caviar-Logo-Schwarz.png" fetchpriority="high">
+    <link rel="preload" as="font" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" crossorigin>
+    
+    <!-- DNS Prefetch for external resources -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
+    <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
 </head>
 <body>
     <!-- Navigation -->
@@ -20,7 +37,7 @@
         <div class="nav-container">
             <div class="logo">
                 <a href="#home" class="logo-link" onclick="scrollToTop(event)">
-                    <img src="./Luna-Caviar-Logo-Schwarz.png" alt="Luna Caviar Logo" class="logo-img">
+                    <img src="./Luna-Caviar-Logo-Schwarz.png" alt="Luna Caviar Logo" class="logo-img" fetchpriority="high">
                 </a>
             </div>
             
@@ -205,12 +222,15 @@
                 <div class="caviar-container">
                     <!-- Unteres Kaviarbild (wird beim Scrollen sichtbar) -->
                     <div class="caviar-bottom">
-                        <img src="./Kaviar-02.png" alt="Premium Caviar" class="caviar-bottom-image">
+                        <img src="./Kaviar-02.webp" alt="Premium Caviar" class="caviar-bottom-image" fetchpriority="high">
                     </div>
                     
                     <!-- Kaviardeckel (öffnet sich beim Scrollen) -->
                     <div class="caviar-lid">
-                        <img src="./Kaviar-Deckel-Schwarz.png" alt="Kaviar Deckel" class="caviar-lid-image">
+                        <picture>
+                            <source srcset="./Kaviar-Deckel-Schwarz.webp" type="image/webp">
+                            <img src="./Kaviar-Deckel-Schwarz.png" alt="Kaviar Deckel" class="caviar-lid-image" fetchpriority="high">
+                        </picture>
                     </div>
                 </div>
             </div>
@@ -283,7 +303,7 @@
     <section class="parallax-caviar">
         <div class="parallax-content">
             <div class="parallax-image">
-                <img src="./Black-Caviar-1.jpg" alt="Premium Black Caviar" class="parallax-img">
+                <img src="./Black-Caviar-1.jpg" alt="Premium Black Caviar" class="parallax-img" loading="lazy">
             </div>
             <div class="parallax-overlay">
                 <div class="parallax-text">
@@ -449,7 +469,7 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-logo">
-                    <img src="./Luna-Caviar-Logo-Weiss.png" alt="Luna Caviar" class="footer-logo-img">
+                    <img src="./Luna-Caviar-Logo-Weiss.png" alt="Luna Caviar" class="footer-logo-img" loading="lazy">
                     <p data-de="Der Moment, in dem Luxus serviert wird" data-en="The moment when luxury is served">Der Moment, in dem Luxus serviert wird</p>
                 </div>
                 <div class="footer-links">
@@ -558,6 +578,6 @@
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
 </body>
 </html>

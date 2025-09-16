@@ -27,6 +27,15 @@ img {
     image-rendering: crisp-edges;
 }
 
+/* Ensure WebP images maintain proper sizing */
+.caviar-bottom-image[src*=".webp"],
+.caviar-lid-image[src*=".webp"] {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    object-position: center !important;
+}
+
 /* Lazy loading for gallery images */
 .gallery-img {
     loading: lazy;
@@ -417,7 +426,7 @@ h1, h2, h3, h4, h5, h6 {
             rgba(212, 175, 55, 0.15) 0%, 
             rgba(26, 26, 26, 0.8) 70%
         ),
-        url('./Holztisch-Background.png');
+        url('./Holztisch-Background.webp');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -647,8 +656,11 @@ h1, h2, h3, h4, h5, h6 {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center;
     border-radius: 50%;
     transition: all 0.3s ease;
+    min-width: 100%;
+    min-height: 100%;
 }
 
 /* Kaviardeckel */

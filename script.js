@@ -12,7 +12,7 @@ let imagesLoaded = 0;
 let totalImages = 0;
 const criticalImages = [
     './Kaviar1.png',
-    './Kaviar2.png'
+    './Kaviar-02.webp'
 ];
 
 function preloadImages() {
