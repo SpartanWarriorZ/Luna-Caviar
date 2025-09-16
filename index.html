@@ -494,84 +494,109 @@
     <div id="bookingModal" class="modal" data-lenis-prevent>
         <div class="modal-content">
             <div class="modal-header">
-                <h3 data-de="Event Buchen" data-en="Book Event">Event Buchen</h3>
-                <span class="close" onclick="closeBookingModal()">&times;</span>
+                <div class="modal-header-content">
+                    <h3 data-de="Event Buchen" data-en="Book Event">Event Buchen</h3>
+                    <p class="modal-subtitle" data-de="Lassen Sie uns Ihr Luxus-Erlebnis planen" data-en="Let us plan your luxury experience">Lassen Sie uns Ihr Luxus-Erlebnis planen</p>
+                </div>
+                <button class="modal-close" onclick="closeBookingModal()" aria-label="Schließen">
+                    <i class="fas fa-times"></i>
+                </button>
             </div>
             <div class="modal-body">
                 <form id="bookingForm" class="booking-form">
-                    <div class="form-group">
-                        <label for="eventType" data-de="Event Typ" data-en="Event Type">Event Typ</label>
-                        <select id="eventType" name="eventType" required>
-                            <option value="" data-de="Bitte wählen..." data-en="Please select...">Bitte wählen...</option>
-                            <option value="hochzeit" data-de="Hochzeit" data-en="Wedding">Hochzeit</option>
-                            <option value="private-feier" data-de="Private Luxusfeier" data-en="Private Luxury Party">Private Luxusfeier</option>
-                            <option value="product-launch" data-de="Produkt-Launch" data-en="Product Launch">Produkt-Launch</option>
-                            <option value="corporate" data-de="Corporate Event" data-en="Corporate Event">Corporate Event</option>
-                            <option value="kunst-mode" data-de="Kunst- & Modeevent" data-en="Art & Fashion Event">Kunst- & Modeevent</option>
-                            <option value="sonstiges" data-de="Sonstiges" data-en="Other">Sonstiges</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="package" data-de="Gewünschtes Paket" data-en="Desired Package">Gewünschtes Paket</label>
-                        <select id="package" name="package" required>
-                            <option value="" data-de="Bitte wählen..." data-en="Please select...">Bitte wählen...</option>
-                            <option value="caviar-stroll" data-de="Caviar Stroll (2h, ab 3.000€)" data-en="Caviar Stroll (2h, from €3,000)">Caviar Stroll (2h, ab 3.000€)</option>
-                            <option value="caviar-indulgence" data-de="Caviar Indulgence (4h, ab 5.000€)" data-en="Caviar Indulgence (4h, from €5,000)">Caviar Indulgence (4h, ab 5.000€)</option>
-                            <option value="custom-event" data-de="Custom Event (individuell)" data-en="Custom Event (individual)">Custom Event (individuell)</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-row">
+                    <!-- Schritt 1: Event Details -->
+                    <div class="form-section">
+                        <h4 class="section-title" data-de="Event Details" data-en="Event Details">Event Details</h4>
+                        
                         <div class="form-group">
-                            <label for="eventDate" data-de="Event Datum" data-en="Event Date">Event Datum</label>
-                            <input type="date" id="eventDate" name="eventDate" required>
+                            <label for="eventType" data-de="Event Typ" data-en="Event Type">Event Typ</label>
+                            <select id="eventType" name="eventType" required>
+                                <option value="" data-de="Bitte wählen..." data-en="Please select...">Bitte wählen...</option>
+                                <option value="hochzeit" data-de="Hochzeit" data-en="Wedding">Hochzeit</option>
+                                <option value="private-feier" data-de="Private Luxusfeier" data-en="Private Luxury Party">Private Luxusfeier</option>
+                                <option value="product-launch" data-de="Produkt-Launch" data-en="Product Launch">Produkt-Launch</option>
+                                <option value="corporate" data-de="Corporate Event" data-en="Corporate Event">Corporate Event</option>
+                                <option value="kunst-mode" data-de="Kunst- & Modeevent" data-en="Art & Fashion Event">Kunst- & Modeevent</option>
+                                <option value="sonstiges" data-de="Sonstiges" data-en="Other">Sonstiges</option>
+                            </select>
                         </div>
+                        
                         <div class="form-group">
-                            <label for="eventTime" data-de="Uhrzeit" data-en="Time">Uhrzeit</label>
-                            <input type="time" id="eventTime" name="eventTime" required>
+                            <label for="package" data-de="Gewünschtes Paket" data-en="Desired Package">Gewünschtes Paket</label>
+                            <select id="package" name="package" required>
+                                <option value="" data-de="Bitte wählen..." data-en="Please select...">Bitte wählen...</option>
+                                <option value="caviar-stroll" data-de="Caviar Stroll (2h, ab 3.000€)" data-en="Caviar Stroll (2h, from €3,000)">Caviar Stroll (2h, ab 3.000€)</option>
+                                <option value="caviar-indulgence" data-de="Caviar Indulgence (4h, ab 5.000€)" data-en="Caviar Indulgence (4h, from €5,000)">Caviar Indulgence (4h, ab 5.000€)</option>
+                                <option value="custom-event" data-de="Custom Event (individuell)" data-en="Custom Event (individual)">Custom Event (individuell)</option>
+                            </select>
                         </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="guestCount" data-de="Anzahl Gäste" data-en="Number of Guests">Anzahl Gäste</label>
-                        <input type="number" id="guestCount" name="guestCount" min="10" required>
-                    </div>
-                    
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="firstName" data-de="Vorname" data-en="First Name">Vorname</label>
-                            <input type="text" id="firstName" name="firstName" required>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="eventDate" data-de="Event Datum" data-en="Event Date">Event Datum</label>
+                                <input type="date" id="eventDate" name="eventDate" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="eventTime" data-de="Uhrzeit" data-en="Time">Uhrzeit</label>
+                                <input type="time" id="eventTime" name="eventTime" required>
+                            </div>
                         </div>
+                        
                         <div class="form-group">
-                            <label for="lastName" data-de="Nachname" data-en="Last Name">Nachname</label>
-                            <input type="text" id="lastName" name="lastName" required>
+                            <label for="guestCount" data-de="Anzahl Gäste" data-en="Number of Guests">Anzahl Gäste</label>
+                            <input type="number" id="guestCount" name="guestCount" min="10" required>
                         </div>
                     </div>
                     
-                    <div class="form-group">
-                        <label for="email" data-de="E-Mail" data-en="E-Mail">E-Mail</label>
-                        <input type="email" id="email" name="email" required>
+                    <!-- Schritt 2: Kontakt & Ort -->
+                    <div class="form-section">
+                        <h4 class="section-title" data-de="Kontakt & Ort" data-en="Contact & Location">Kontakt & Ort</h4>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="firstName" data-de="Vorname" data-en="First Name">Vorname</label>
+                                <input type="text" id="firstName" name="firstName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName" data-de="Nachname" data-en="Last Name">Nachname</label>
+                                <input type="text" id="lastName" name="lastName" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="email" data-de="E-Mail" data-en="E-Mail">E-Mail</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone" data-de="Telefon" data-en="Phone">Telefon</label>
+                                <input type="tel" id="phone" name="phone" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="location" data-de="Veranstaltungsort" data-en="Event Location">Veranstaltungsort</label>
+                            <textarea id="location" name="location" rows="2" data-de="Adresse oder Beschreibung des Veranstaltungsorts" data-en="Address or description of the event location" placeholder="Adresse oder Beschreibung des Veranstaltungsorts" required></textarea>
+                        </div>
                     </div>
                     
-                    <div class="form-group">
-                        <label for="phone" data-de="Telefon" data-en="Phone">Telefon</label>
-                        <input type="tel" id="phone" name="phone" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="location" data-de="Veranstaltungsort" data-en="Event Location">Veranstaltungsort</label>
-                        <textarea id="location" name="location" rows="2" data-de="Adresse oder Beschreibung des Veranstaltungsorts" data-en="Address or description of the event location" placeholder="Adresse oder Beschreibung des Veranstaltungsorts" required></textarea>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="message" data-de="Zusätzliche Wünsche" data-en="Additional Requests">Zusätzliche Wünsche</label>
-                        <textarea id="message" name="message" rows="4" data-de="Besondere Wünsche, Allergien, oder weitere Informationen..." data-en="Special requests, allergies, or additional information..." placeholder="Besondere Wünsche, Allergien, oder weitere Informationen..."></textarea>
+                    <!-- Schritt 3: Zusätzliche Wünsche -->
+                    <div class="form-section">
+                        <h4 class="section-title" data-de="Zusätzliche Wünsche" data-en="Additional Requests">Zusätzliche Wünsche</h4>
+                        <div class="form-group">
+                            <label for="message" data-de="Besondere Wünsche oder Informationen" data-en="Special requests or information">Besondere Wünsche oder Informationen</label>
+                            <textarea id="message" name="message" rows="3" data-de="Besondere Wünsche, Allergien, oder weitere Informationen..." data-en="Special requests, allergies, or additional information..." placeholder="Besondere Wünsche, Allergien, oder weitere Informationen..."></textarea>
+                        </div>
                     </div>
                     
                     <div class="form-actions">
-                        <button type="button" class="btn-secondary" onclick="closeBookingModal()"><span data-de="Abbrechen" data-en="Cancel">Abbrechen</span></button>
-                        <button type="submit" class="btn-primary"><span data-de="Buchungsanfrage Senden" data-en="Send Booking Request">Buchungsanfrage Senden</span></button>
+                        <button type="button" class="btn-secondary" onclick="closeBookingModal()">
+                            <span data-de="Abbrechen" data-en="Cancel">Abbrechen</span>
+                        </button>
+                        <button type="submit" class="btn-primary">
+                            <i class="fas fa-paper-plane"></i>
+                            <span data-de="Buchungsanfrage Senden" data-en="Send Booking Request">Buchungsanfrage Senden</span>
+                        </button>
                     </div>
                 </form>
             </div>
