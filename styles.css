@@ -1988,6 +1988,126 @@ h1, h2, h3, h4, h5, h6 {
         padding: 0 1rem;
     }
     
+    /* Universal Mobile Right Margin */
+    .about-content,
+    .about-text,
+    .about-description,
+    .about-features,
+    .about-stats,
+    .stat-item,
+    .caviar-info-section {
+        max-width: calc(100vw - 30px);
+    }
+    
+    /* Caviar Info Mobile Styles */
+    .caviar-info-section {
+        margin-top: 2rem;
+        border-radius: 16px;
+    }
+    
+    .caviar-info-toggle {
+        padding: 1.5rem;
+    }
+    
+    .toggle-content {
+        gap: 1rem;
+    }
+    
+    .toggle-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 1.2rem;
+    }
+    
+    .toggle-text h4 {
+        font-size: 1.2rem;
+    }
+    
+    .toggle-text p {
+        font-size: 0.9rem;
+    }
+    
+    .toggle-arrow {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+    
+    .caviar-info-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        padding: 1.5rem;
+    }
+    
+    .caviar-variety {
+        padding: 1.5rem;
+    }
+    
+    .variety-header {
+        gap: 0.8rem;
+        margin-bottom: 1rem;
+    }
+    
+    .variety-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+    
+    .variety-header h5 {
+        font-size: 1.1rem;
+    }
+    
+    .variety-grade {
+        padding: 0.2rem 0.6rem;
+        font-size: 0.7rem;
+    }
+    
+    .detail-item {
+        gap: 0.6rem;
+        padding: 0.4rem 0;
+    }
+    
+    .detail-item i {
+        width: 16px;
+        font-size: 0.8rem;
+    }
+    
+    .detail-item span {
+        font-size: 0.8rem;
+        min-width: 70px;
+    }
+    
+    .detail-item strong {
+        font-size: 0.8rem;
+    }
+    
+    .caviar-additional-info {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        padding: 1.5rem;
+    }
+    
+    .info-card {
+        padding: 1.2rem;
+    }
+    
+    .info-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+        margin-bottom: 0.8rem;
+    }
+    
+    .info-card h6 {
+        font-size: 1rem;
+        margin-bottom: 0.6rem;
+    }
+    
+    .info-card p {
+        font-size: 0.85rem;
+    }
+    
     .hero {
         padding: 10rem 0 2rem;
         background-attachment: scroll;
@@ -2162,6 +2282,109 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 @media (max-width: 480px) {
+    /* Caviar Info Small Mobile Styles */
+    
+    .caviar-info-toggle {
+        padding: 1.2rem;
+    }
+    
+    .toggle-content {
+        gap: 0.8rem;
+    }
+    
+    .toggle-icon {
+        width: 45px;
+        height: 45px;
+        font-size: 1.1rem;
+    }
+    
+    .toggle-text h4 {
+        font-size: 1.1rem;
+    }
+    
+    .toggle-text p {
+        font-size: 0.85rem;
+    }
+    
+    .toggle-arrow {
+        width: 35px;
+        height: 35px;
+        font-size: 0.9rem;
+    }
+    
+    .caviar-info-grid {
+        padding: 1.2rem;
+        gap: 1.2rem;
+    }
+    
+    .caviar-variety {
+        padding: 1.2rem;
+    }
+    
+    .variety-header {
+        gap: 0.6rem;
+        margin-bottom: 0.8rem;
+    }
+    
+    .variety-icon {
+        width: 35px;
+        height: 35px;
+        font-size: 0.9rem;
+    }
+    
+    .variety-header h5 {
+        font-size: 1rem;
+    }
+    
+    .variety-grade {
+        padding: 0.15rem 0.5rem;
+        font-size: 0.65rem;
+    }
+    
+    .detail-item {
+        gap: 0.5rem;
+        padding: 0.3rem 0;
+    }
+    
+    .detail-item i {
+        width: 14px;
+        font-size: 0.75rem;
+    }
+    
+    .detail-item span {
+        font-size: 0.75rem;
+        min-width: 60px;
+    }
+    
+    .detail-item strong {
+        font-size: 0.75rem;
+    }
+    
+    .caviar-additional-info {
+        padding: 1.2rem;
+        gap: 0.8rem;
+    }
+    
+    .info-card {
+        padding: 1rem;
+    }
+    
+    .info-icon {
+        width: 35px;
+        height: 35px;
+        font-size: 0.9rem;
+        margin-bottom: 0.6rem;
+    }
+    
+    .info-card h6 {
+        font-size: 0.95rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    .info-card p {
+        font-size: 0.8rem;
+    }
+    
     .hero {
         padding: 11rem 0 2rem;
     }
@@ -2936,6 +3159,413 @@ html.lenis {
 [data-theme="dark"] .navbar.scrolled {
     background: rgba(26, 26, 26, 0.98);
     box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Caviar Info Section */
+.caviar-info-section {
+    margin-top: 3rem;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--border-color);
+    background: var(--bg-card);
+    transition: all 0.3s ease;
+}
+
+.caviar-info-section:hover {
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
+}
+
+.caviar-info-toggle {
+    width: 100%;
+    background: linear-gradient(135deg, 
+        rgba(212, 175, 55, 0.05) 0%, 
+        rgba(255, 255, 255, 0.1) 50%,
+        rgba(212, 175, 55, 0.05) 100%);
+    border: none;
+    padding: 2rem;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.caviar-info-toggle::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent 0%, 
+        rgba(212, 175, 55, 0.1) 50%, 
+        transparent 100%);
+    transition: left 0.6s ease;
+}
+
+.caviar-info-toggle:hover::before {
+    left: 100%;
+}
+
+.caviar-info-toggle:hover {
+    background: linear-gradient(135deg, 
+        rgba(212, 175, 55, 0.1) 0%, 
+        rgba(255, 255, 255, 0.15) 50%,
+        rgba(212, 175, 55, 0.1) 100%);
+    transform: translateY(-1px);
+}
+
+.caviar-info-toggle.expanded {
+    background: linear-gradient(135deg, 
+        rgba(212, 175, 55, 0.15) 0%, 
+        rgba(255, 255, 255, 0.2) 50%,
+        rgba(212, 175, 55, 0.15) 100%);
+    border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+.toggle-content {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    position: relative;
+    z-index: 2;
+}
+
+.toggle-icon {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, var(--primary-gold), var(--accent-gold));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.5rem;
+    box-shadow: 0 8px 25px rgba(212, 175, 55, 0.3);
+    transition: all 0.3s ease;
+}
+
+.caviar-info-toggle:hover .toggle-icon {
+    transform: scale(1.1) rotateY(10deg);
+    box-shadow: 0 12px 35px rgba(212, 175, 55, 0.5);
+}
+
+.toggle-text {
+    flex: 1;
+    text-align: left;
+}
+
+.toggle-text h4 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0 0 0.5rem 0;
+    background: linear-gradient(135deg, var(--text-primary), var(--primary-gold));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.toggle-text p {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    margin: 0;
+    line-height: 1.5;
+}
+
+.toggle-arrow {
+    width: 50px;
+    height: 50px;
+    background: rgba(212, 175, 55, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary-gold);
+    font-size: 1.2rem;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 2px solid rgba(212, 175, 55, 0.2);
+}
+
+.caviar-info-toggle:hover .toggle-arrow {
+    background: rgba(212, 175, 55, 0.2);
+    border-color: var(--primary-gold);
+    transform: scale(1.1);
+}
+
+.caviar-info-content {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    background: var(--bg-card);
+}
+
+.caviar-info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    padding: 2rem;
+}
+
+.caviar-variety {
+    background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.8) 0%, 
+        rgba(248, 248, 248, 0.9) 100%);
+    border-radius: 16px;
+    padding: 2rem;
+    border: 1px solid rgba(212, 175, 55, 0.1);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.caviar-variety::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-gold), var(--accent-gold), var(--primary-gold));
+    transform: scaleX(0);
+    transition: transform 0.4s ease;
+}
+
+.caviar-variety:hover::before {
+    transform: scaleX(1);
+}
+
+.caviar-variety:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+    border-color: var(--primary-gold);
+}
+
+.variety-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+}
+
+.variety-icon {
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, var(--primary-gold), var(--accent-gold));
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.2rem;
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+}
+
+.variety-header h5 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0;
+    flex: 1;
+}
+
+.variety-grade {
+    background: linear-gradient(135deg, var(--primary-gold), var(--accent-gold));
+    color: white;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 8px rgba(212, 175, 55, 0.3);
+}
+
+.variety-details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.detail-item {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 0.5rem 0;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.detail-item:hover {
+    background: rgba(212, 175, 55, 0.05);
+    transform: translateX(5px);
+}
+
+.detail-item i {
+    width: 20px;
+    color: var(--primary-gold);
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+.detail-item span {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    min-width: 80px;
+}
+
+.detail-item strong {
+    font-size: 0.9rem;
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+.caviar-additional-info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    padding: 2rem;
+    border-top: 1px solid rgba(212, 175, 55, 0.1);
+    background: linear-gradient(135deg, 
+        rgba(212, 175, 55, 0.02) 0%, 
+        rgba(255, 255, 255, 0.05) 100%);
+}
+
+.info-card {
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 12px;
+    padding: 1.5rem;
+    border: 1px solid rgba(212, 175, 55, 0.1);
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.info-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    border-color: var(--primary-gold);
+}
+
+.info-icon {
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, var(--primary-gold), var(--accent-gold));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.2rem;
+    margin: 0 auto 1rem;
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+}
+
+.info-card h6 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0 0 0.8rem 0;
+}
+
+.info-card p {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* Dark Mode Styles for Caviar Info */
+[data-theme="dark"] .caviar-info-section {
+    background: linear-gradient(135deg, 
+        rgba(26, 26, 26, 0.95) 0%, 
+        rgba(45, 45, 45, 0.9) 100%);
+    border-color: rgba(212, 175, 55, 0.3);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] .caviar-info-section:hover {
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+}
+
+[data-theme="dark"] .caviar-info-toggle {
+    background: linear-gradient(135deg, 
+        rgba(212, 175, 55, 0.1) 0%, 
+        rgba(26, 26, 26, 0.2) 50%,
+        rgba(212, 175, 55, 0.1) 100%);
+}
+
+[data-theme="dark"] .caviar-info-toggle:hover {
+    background: linear-gradient(135deg, 
+        rgba(212, 175, 55, 0.15) 0%, 
+        rgba(26, 26, 26, 0.3) 50%,
+        rgba(212, 175, 55, 0.15) 100%);
+}
+
+[data-theme="dark"] .caviar-info-toggle.expanded {
+    background: linear-gradient(135deg, 
+        rgba(212, 175, 55, 0.2) 0%, 
+        rgba(26, 26, 26, 0.4) 50%,
+        rgba(212, 175, 55, 0.2) 100%);
+    border-bottom-color: rgba(212, 175, 55, 0.3);
+}
+
+[data-theme="dark"] .toggle-text h4 {
+    background: linear-gradient(135deg, #FFFFFF, var(--primary-gold));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+[data-theme="dark"] .toggle-text p {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+[data-theme="dark"] .caviar-variety {
+    background: linear-gradient(135deg, 
+        rgba(26, 26, 26, 0.8) 0%, 
+        rgba(45, 45, 45, 0.9) 100%);
+    border-color: rgba(212, 175, 55, 0.2);
+}
+
+[data-theme="dark"] .variety-header {
+    border-bottom-color: rgba(212, 175, 55, 0.2);
+}
+
+[data-theme="dark"] .variety-header h5 {
+    color: #FFFFFF;
+}
+
+[data-theme="dark"] .detail-item span {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+[data-theme="dark"] .detail-item strong {
+    color: #FFFFFF;
+}
+
+[data-theme="dark"] .caviar-additional-info {
+    background: linear-gradient(135deg, 
+        rgba(212, 175, 55, 0.05) 0%, 
+        rgba(26, 26, 26, 0.1) 100%);
+    border-top-color: rgba(212, 175, 55, 0.2);
+}
+
+[data-theme="dark"] .info-card {
+    background: rgba(26, 26, 26, 0.6);
+    border-color: rgba(212, 175, 55, 0.2);
+}
+
+[data-theme="dark"] .info-card h6 {
+    color: #FFFFFF;
+}
+
+[data-theme="dark"] .info-card p {
+    color: rgba(255, 255, 255, 0.8);
 }
 
 /* Custom Scrollbar */

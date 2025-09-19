@@ -1208,6 +1208,60 @@ function setTheme(theme) {
     }
 }
 
+// Caviar Info Toggle Function
+function toggleCaviarInfo() {
+    const toggleButton = document.querySelector('.caviar-info-toggle');
+    const content = document.querySelector('.caviar-info-content');
+    const arrow = document.querySelector('.caviar-info-toggle .toggle-arrow i');
+    
+    if (!toggleButton || !content || !arrow) return;
+    
+    const isExpanded = toggleButton.classList.contains('expanded');
+    
+    if (isExpanded) {
+        // Collapse
+        toggleButton.classList.remove('expanded');
+        content.style.maxHeight = '0px';
+        content.style.opacity = '0';
+        arrow.style.transform = 'rotate(0deg)';
+        
+        // Smooth scroll to keep the toggle button in view
+        setTimeout(() => {
+            toggleButton.scrollIntoView({ 
+                behavior: 'smooth', 
+                block: 'center' 
+            });
+        }, 100);
+    } else {
+        // Expand
+        toggleButton.classList.add('expanded');
+        
+        // Calculate the full height
+        const fullHeight = content.scrollHeight + 'px';
+        
+        // Set initial state
+        content.style.maxHeight = '0px';
+        content.style.opacity = '0';
+        
+        // Force reflow
+        content.offsetHeight;
+        
+        // Animate to full height
+        content.style.maxHeight = fullHeight;
+        content.style.opacity = '1';
+        arrow.style.transform = 'rotate(180deg)';
+        
+        // Smooth scroll to show the expanded content
+        setTimeout(() => {
+            content.scrollIntoView({ 
+                behavior: 'smooth', 
+                block: 'start',
+                inline: 'nearest'
+            });
+        }, 300);
+    }
+}
+
 // Export functions for testing (if needed)
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = {
@@ -1218,6 +1272,7 @@ if (typeof module !== 'undefined' && module.exports) {
         formatCurrency,
         formatDate,
         toggleTheme,
-        setTheme
+        setTheme,
+        toggleCaviarInfo
     };
 }
