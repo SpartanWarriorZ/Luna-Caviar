@@ -1217,6 +1217,7 @@ function toggleCaviarInfo() {
     if (!toggleButton || !content || !arrow) return;
     
     const isExpanded = toggleButton.classList.contains('expanded');
+    const isMobile = window.innerWidth <= 768;
     
     if (isExpanded) {
         // Collapse
@@ -1225,13 +1226,15 @@ function toggleCaviarInfo() {
         content.style.opacity = '0';
         arrow.style.transform = 'rotate(0deg)';
         
-        // Smooth scroll to keep the toggle button in view
-        setTimeout(() => {
-            toggleButton.scrollIntoView({ 
-                behavior: 'smooth', 
-                block: 'center' 
-            });
-        }, 100);
+        // Only scroll on mobile when collapsing
+        if (isMobile) {
+            setTimeout(() => {
+                toggleButton.scrollIntoView({ 
+                    behavior: 'smooth', 
+                    block: 'center' 
+                });
+            }, 100);
+        }
     } else {
         // Expand
         toggleButton.classList.add('expanded');
@@ -1251,14 +1254,16 @@ function toggleCaviarInfo() {
         content.style.opacity = '1';
         arrow.style.transform = 'rotate(180deg)';
         
-        // Smooth scroll to show the expanded content
-        setTimeout(() => {
-            content.scrollIntoView({ 
-                behavior: 'smooth', 
-                block: 'start',
-                inline: 'nearest'
-            });
-        }, 300);
+        // Only scroll on mobile when expanding
+        if (isMobile) {
+            setTimeout(() => {
+                content.scrollIntoView({ 
+                    behavior: 'smooth', 
+                    block: 'start',
+                    inline: 'nearest'
+                });
+            }, 300);
+        }
     }
 }
 
