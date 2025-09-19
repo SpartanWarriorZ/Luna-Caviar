@@ -169,7 +169,15 @@ img {
     color: #FFFFFF;
 }
 
+[data-theme="dark"] .form-section .section-title {
+    color: #FFFFFF;
+}
+
 [data-theme="dark"] .section-title::before {
+    background: linear-gradient(135deg, var(--primary-gold), var(--accent-gold));
+}
+
+[data-theme="dark"] .form-section .section-title::before {
     background: linear-gradient(135deg, var(--primary-gold), var(--accent-gold));
 }
 
@@ -1758,7 +1766,7 @@ h1, h2, h3, h4, h5, h6 {
         var(--primary-gold) 100%);
 }
 
-.section-title {
+.form-section .section-title {
     font-size: 1.3rem;
     font-weight: 600;
     color: var(--text-primary);
@@ -1768,7 +1776,7 @@ h1, h2, h3, h4, h5, h6 {
     gap: 0.5rem;
 }
 
-.section-title::before {
+.form-section .section-title::before {
     content: '';
     width: 4px;
     height: 20px;
